@@ -1,51 +1,85 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#264653] text-[#FEFAE0] mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Bedrijfsinfo */}
-        <div>
-          <h3 className="text-xl font-extrabold text-[#E9C46A] mb-4" style={{ fontFamily: "'Nunito', sans-serif" }}>
-            Alterion
-          </h3>
-          <address className="not-italic text-sm leading-7 text-[#FEFAE0]/80">
-            Keurmeesterstraat 53<br />
-            1187 ZX Amstelveen<br />
-            KVK: 81350643<br />
-            <a href="mailto:info@alterion.nl" className="hover:text-[#E9C46A] transition-colors">
-              info@alterion.nl
-            </a><br />
-            <a href="https://www.alterion.nl" className="hover:text-[#E9C46A] transition-colors">
-              www.alterion.nl
-            </a>
-          </address>
+    <footer className="bg-secondary pt-20 pb-10 border-t border-slate-800 mt-auto">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+          {/* Brand */}
+          <div className="space-y-6">
+            <Image
+              src="/logos/Group 39891-1.png"
+              alt="Alterion"
+              width={140}
+              height={35}
+              className="h-8 w-auto"
+            />
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Wij versnellen de energietransitie door slimme energie-opslag toegankelijk te maken voor iedereen.
+            </p>
+          </div>
+
+          {/* Producten */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Producten</h4>
+            <ul className="space-y-4">
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-lite">Thuisbatterij Lite</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-pro">Thuisbatterij Pro</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-max">Thuisbatterij Max</Link></li>
+            </ul>
+          </div>
+
+          {/* Bedrijf */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Bedrijf</h4>
+            <ul className="space-y-4">
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/over-ons">Over Alterion</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/diensten">Calculator</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/contact">Contact</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Contact</h4>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3 text-slate-400 text-sm">
+                <span className="material-symbols-outlined text-primary text-sm">mail</span>
+                info@alterion.nl
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 text-sm">
+                <span className="material-symbols-outlined text-primary text-sm">call</span>
+                +31 (0) 20 123 4567
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 text-sm">
+                <span className="material-symbols-outlined text-primary text-sm">location_on</span>
+                Keurmeesterstraat 53, Amstelveen
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* Navigatie */}
-        <div>
-          <h4 className="text-sm font-bold uppercase tracking-widest text-[#2A9D8F] mb-4">Navigatie</h4>
-          <nav className="flex flex-col gap-2 text-sm text-[#FEFAE0]/80">
-            <Link href="/" className="hover:text-[#E9C46A] transition-colors">Home</Link>
-            <Link href="/diensten" className="hover:text-[#E9C46A] transition-colors">Diensten</Link>
-            <Link href="/over-ons" className="hover:text-[#E9C46A] transition-colors">Over Ons</Link>
-            <Link href="/webshop" className="hover:text-[#E9C46A] transition-colors">Webshop</Link>
-            <Link href="/contact" className="hover:text-[#E9C46A] transition-colors">Contact</Link>
-          </nav>
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-500 text-xs">&copy; {new Date().getFullYear()} Alterion Energy Solutions. Alle rechten voorbehouden.</p>
+          <div className="flex gap-6">
+            <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/privacybeleid">Privacybeleid</Link>
+            <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/voorwaarden">Algemene Voorwaarden</Link>
+            <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/cookies">Cookiebeleid</Link>
+          </div>
         </div>
 
-        {/* Legal */}
-        <div>
-          <h4 className="text-sm font-bold uppercase tracking-widest text-[#2A9D8F] mb-4">Legal</h4>
-          <nav className="flex flex-col gap-2 text-sm text-[#FEFAE0]/80">
-            <Link href="/voorwaarden" className="hover:text-[#E9C46A] transition-colors">Algemene Voorwaarden</Link>
-            <Link href="/contact" className="hover:text-[#E9C46A] transition-colors">Offerte aanvragen</Link>
-          </nav>
+        {/* Gemaakt door */}
+        <div className="mt-8 pt-6 border-t border-slate-800/50 flex justify-center items-center gap-2">
+          <span className="text-white text-sm">Gemaakt door</span>
+          <Image
+            src="/makers logo/Group 2.png"
+            alt="RoseVibes Studio"
+            width={160}
+            height={48}
+            className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity brightness-0 invert"
+          />
         </div>
-      </div>
-
-      <div className="border-t border-[#2A9D8F]/30 px-6 py-4 text-center text-xs text-[#FEFAE0]/50">
-        © {new Date().getFullYear()} Alterion. Alle rechten voorbehouden.
       </div>
     </footer>
   );

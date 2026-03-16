@@ -1,23 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #E76F51;
-  --color-dark: #264653;
-  --color-cream: #FEFAE0;
-  --color-gold: #E9C46A;
-  --color-peach: #F4A261;
-  --color-teal: #2A9D8F;
-  --font-heading: 'Nunito', sans-serif;
-  --font-body: 'Lato', sans-serif;
+  --color-primary: #f2c40d;
+  --color-secondary: #1a2b3c;
+  --color-background-light: #f8f8f5;
+  --color-background-dark: #221e10;
+  --color-neutral-gray: #F5F5F5;
+  --color-slate-900: #1a1708;
+  --color-slate-800: #2d2812;
+  --color-slate-700: #453e1e;
+  --color-slate-600: #60572d;
+  --font-display: 'Inter', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-dark);
-  font-family: var(--font-body);
+  background-color: var(--color-background-light);
+  color: var(--color-slate-900);
+  font-family: var(--font-display);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-poppins);
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
 }
