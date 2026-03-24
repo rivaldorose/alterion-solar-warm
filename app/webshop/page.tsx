@@ -2,6 +2,8 @@ import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import { getProducts, getProductPrice, formatPrice, MedusaProduct } from "@/lib/medusa";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Webshop – Alterion",
   description: "Bekijk ons productaanbod voor thuisbatterijen en energieoplossingen.",

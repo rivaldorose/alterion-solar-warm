@@ -33,13 +33,19 @@ interface MedusaResponse<T> {
 }
 
 async function medusaFetch<T>(path: string): Promise<T> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   const res = await fetch(`${MEDUSA_BACKEND_URL}${path}`, {
     headers: {
       "x-publishable-api-key": MEDUSA_PUBLISHABLE_KEY,
       "Content-Type": "application/json",
     },
+    signal: controller.signal,
     next: { revalidate: 60 },
   });
+
+  clearTimeout(timeout);
 
   if (!res.ok) {
     throw new Error(`Medusa API error: ${res.status} ${res.statusText}`);
