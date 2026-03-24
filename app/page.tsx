@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Calculator from "@/components/Calculator";
 
 const partners = [
   { name: "Alliander", src: "/partners/alliander.png" },
@@ -109,55 +110,7 @@ export default function HomePage() {
       </section>
 
       {/* Calculator Section */}
-      <section className="bg-neutral-gray border-t-4 border-primary py-24">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-secondary">Bereken uw besparing in 1 minuut</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-secondary uppercase tracking-wider">Energierekening /mnd</label>
-              <input className="w-full p-4 rounded-lg border-none bg-white shadow-sm focus:ring-2 focus:ring-primary" placeholder="€ 150" type="text" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-secondary uppercase tracking-wider">Aantal zonnepanelen</label>
-              <div className="pt-5">
-                <input className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary" type="range" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-secondary uppercase tracking-wider">Type woning</label>
-              <select className="w-full p-4 rounded-lg border-none bg-white shadow-sm focus:ring-2 focus:ring-primary">
-                <option>Vrijstaand</option>
-                <option>Tussenwoning</option>
-                <option>Hoekwoning</option>
-                <option>Appartement</option>
-              </select>
-            </div>
-          </div>
-          <div className="bg-white p-8 md:p-12 rounded-xl shadow-2xl border border-slate-50">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-slate-500 font-medium mb-2">Uw geschatte besparing per jaar</p>
-                <h3 className="text-5xl font-black text-secondary mb-6">€ 1.240,-</h3>
-                <div className="flex items-center gap-2 text-secondary font-bold">
-                  <span className="material-symbols-outlined text-green-500">schedule</span>
-                  Terugverdientijd: 6.5 jaar
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <Link
-                  href="/contact"
-                  className="bg-primary text-secondary font-bold px-8 py-5 rounded-lg text-lg hover:brightness-105 transition-all shadow-lg shadow-primary/20 text-center"
-                >
-                  Direct advies aanvragen
-                </Link>
-                <p className="text-xs text-center text-slate-400">Deze berekening is een indicatie op basis van gemiddelden.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Calculator />
 
       {/* Product Section 1 */}
       <section className="py-24 bg-white">

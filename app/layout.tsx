@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import CookieBanner from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Alterion – Zonnepanelen & Energieoplossingen",
@@ -25,6 +26,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 pt-28">{children}</main>
           <Footer />
+          <CookieBanner />
         </CartProvider>
       </body>
     </html>
