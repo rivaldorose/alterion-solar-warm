@@ -1,19 +1,19 @@
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
+import { getProducts, getProductPrice, formatPrice, MedusaProduct } from "@/lib/medusa";
 
 export const metadata = {
   title: "Webshop – Alterion",
   description: "Bekijk ons productaanbod voor thuisbatterijen en energieoplossingen.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     slug: "thuisbatterij-lite",
     name: "Thuisbatterij Lite",
     description: "Compacte opslag (5kWh) voor kleinere huishoudens en appartementen.",
     price: 2499,
     priceDisplay: "€2.499",
-    oldPrice: "€2.899",
     badge: "Best Seller",
     badgeStyle: "bg-primary text-secondary",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBDYQOvNfAzDQrUUtlXVWBr6_OSf4gevdOi2w7V3tcKulAcxT8CIhELEVOUnsyD01vRvvYlu-Y2WgAWdabJs6WsgUZifk6iZQ71gSLYDXJqZzVOiUdmQeqKENdq9aCSpcAPtevTpdgj-Hv_BJRTAyjY9y6YSgx5LoS0DBVWunu399j54NW1yUgxv6f7yX8IZ5kwfe__nT2eLWlJYt2VzxhVNc-5ew5BaeltRPl9QqN9nRcXFzI-brHXr8cv77j3w1pRzWkCJ9aPTOiu",
@@ -24,7 +24,6 @@ const products = [
     description: "De ideale balans (10kWh) voor het gemiddelde gezin met zonnepanelen.",
     price: 4599,
     priceDisplay: "€4.599",
-    oldPrice: null,
     badge: "Populairste",
     badgeStyle: "bg-secondary text-primary border border-primary",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAcKsNhQWiLRyOe5H8Q3I0dvtlk9j4MjjCXL83PXgNCiApFJ55LtXcJ7fSW-wppiEZyt8NMFj3gys445zK1Myay_sbieDrtQpgji7XuEgCPnAAbQwomRZ2a0_mAcfFDlx8ustugGrPmXLwsk2-v39cpvfpckvt8Ou8IuGwbcs0PK_wYIVtuaDScHevNhm0AK-SzsLudEHuFTOgWwWLQoO_T2m96HnGTxsDoER_gVyUssHW8BMNYNkFswOweLLYQmGSRbyYUABu6s3Ey",
@@ -35,14 +34,39 @@ const products = [
     description: "Maximale capaciteit (20kWh+) voor volledige energie-onafhankelijkheid.",
     price: 7299,
     priceDisplay: "€7.299",
-    oldPrice: null,
     badge: "Premium",
     badgeStyle: "bg-primary text-secondary",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBdoiAWs5cTm_w4U4CYjhtFK-MHIFW1qSDpkhFo2hnyP4bYox_con-DugIDhw835ozargle4-0VvjMVPRfPt_4sOxUxRWZBcATw14UTsJrody_lVbv2E6ZDlBa5kX8SpM7ieprD4uYoOb_kLJc05XJniwwxtojKNuqgcVnOnyAx59IPdZbLy-CyODY9_gJ70dFiWGluF1jmdy10VjhKhL_guRdXJSBNAIazCVXTVBeoWSHDiVqMFz-X0OsuIZEvtSywjyC6mgewNVIq",
   },
 ];
 
-export default function WebshopPage() {
+const badges: Record<string, { text: string; style: string }> = {
+  "thuisbatterij-lite": { text: "Best Seller", style: "bg-primary text-secondary" },
+  "thuisbatterij-pro": { text: "Populairste", style: "bg-secondary text-primary border border-primary" },
+  "thuisbatterij-max": { text: "Premium", style: "bg-primary text-secondary" },
+};
+
+function mapMedusaProduct(product: MedusaProduct) {
+  const price = getProductPrice(product);
+  const badge = badges[product.handle] || { text: "Nieuw", style: "bg-primary text-secondary" };
+  return {
+    slug: product.handle,
+    name: product.title,
+    description: product.description || "",
+    price,
+    priceDisplay: formatPrice(price),
+    badge: badge.text,
+    badgeStyle: badge.style,
+    image: product.images?.[0]?.url || "",
+  };
+}
+
+export default async function WebshopPage() {
+  const medusaProducts = await getProducts();
+  const products = medusaProducts.length > 0
+    ? medusaProducts.map(mapMedusaProduct)
+    : fallbackProducts;
+
   return (
     <div className="max-w-[1280px] mx-auto w-full px-4 md:px-10 py-8">
       <div className="flex flex-col gap-4 mb-8">
@@ -128,7 +152,6 @@ export default function WebshopPage() {
                   <div className="mt-auto pt-4 border-t border-slate-50 flex flex-col gap-4">
                     <div className="flex items-baseline gap-2">
                       <span className="text-secondary text-2xl font-black">{product.priceDisplay}</span>
-                      {product.oldPrice && <span className="text-slate-400 text-xs line-through">{product.oldPrice}</span>}
                     </div>
                     <AddToCartButton
                       slug={product.slug}
