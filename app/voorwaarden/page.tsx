@@ -15,9 +15,9 @@ export default function VoorwaardenPage() {
         <section>
           <h2 className="text-2xl font-bold text-secondary">1. Definities</h2>
           <p className="text-slate-600 leading-relaxed">
-            In deze algemene voorwaarden wordt verstaan onder: <strong>Alterion:</strong> Alterion Energy Solutions B.V., gevestigd te Amstelveen, ingeschreven bij de KvK onder nummer 12345678.
+            In deze algemene voorwaarden wordt verstaan onder: <strong>Alterion:</strong> Alterion, gevestigd aan Keurmeesterstraat 53, 1187ZX Amstelveen, ingeschreven bij de KvK onder nummer 81350643.
             <strong> Klant:</strong> de natuurlijke of rechtspersoon die met Alterion een overeenkomst aangaat.
-            <strong> Producten:</strong> alle door Alterion aangeboden thuisbatterijen, omvormers, laadpalen en aanverwante apparatuur.
+            <strong> Producten:</strong> alle door Alterion aangeboden zonnepanelen, thuisbatterijen, omvormers, laadpalen en aanverwante apparatuur.
             <strong> Diensten:</strong> alle door Alterion aangeboden installatie-, advies- en onderhoudsdiensten.
           </p>
         </section>

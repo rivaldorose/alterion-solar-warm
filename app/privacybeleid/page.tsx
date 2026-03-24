@@ -15,7 +15,7 @@ export default function PrivacybeleidPage() {
         <section>
           <h2 className="text-2xl font-bold text-secondary">1. Inleiding</h2>
           <p className="text-slate-600 leading-relaxed">
-            Alterion Energy Solutions B.V. respecteert uw privacy en draagt er zorg voor dat uw persoonlijke gegevens vertrouwelijk worden behandeld. Dit privacybeleid beschrijft welke gegevens wij verzamelen, hoe wij deze gebruiken en welke rechten u heeft.
+            Alterion (gevestigd aan Keurmeesterstraat 53, 1187ZX Amstelveen, KvK 81350643) respecteert uw privacy en draagt er zorg voor dat uw persoonlijke gegevens vertrouwelijk worden behandeld. Dit privacybeleid beschrijft welke gegevens wij verzamelen, hoe wij deze gebruiken en welke rechten u heeft.
           </p>
         </section>
 
@@ -53,7 +53,16 @@ export default function PrivacybeleidPage() {
         <section>
           <h2 className="text-2xl font-bold text-secondary">5. Delen met derden</h2>
           <p className="text-slate-600 leading-relaxed">
-            Wij delen uw gegevens niet met derden, tenzij dit noodzakelijk is voor de uitvoering van de overeenkomst (bijv. bezorgdiensten, betaalproviders) of wij hiertoe wettelijk verplicht zijn. Wij sluiten met alle verwerkers een verwerkersovereenkomst om de beveiliging van uw gegevens te waarborgen.
+            Wij delen uw gegevens alleen met derden wanneer dit noodzakelijk is voor de uitvoering van de overeenkomst of wanneer wij hiertoe wettelijk verplicht zijn. De partijen waarmee wij samenwerken zijn onder andere:
+          </p>
+          <ul className="list-disc pl-6 text-slate-600 space-y-2 mt-3">
+            <li><strong>Vimexx:</strong> onze hostingprovider voor de website</li>
+            <li><strong>Mollie:</strong> voor het veilig verwerken van betalingen</li>
+            <li><strong>Google Analytics:</strong> voor het analyseren van websitegebruik (geanonimiseerd)</li>
+            <li><strong>Mailchimp:</strong> voor het versturen van nieuwsbrieven (alleen met uw toestemming)</li>
+          </ul>
+          <p className="text-slate-600 leading-relaxed mt-3">
+            Wij sluiten met alle verwerkers een verwerkersovereenkomst om de beveiliging van uw gegevens te waarborgen.
           </p>
         </section>
 
@@ -86,7 +95,7 @@ export default function PrivacybeleidPage() {
 
         <div className="bg-neutral-gray p-8 rounded-xl mt-12">
           <p className="text-slate-500 text-sm">
-            Laatste update: maart 2026. Alterion Energy Solutions B.V. | KvK: 12345678 | Keurmeesterstraat 53, Amstelveen
+            Laatste update: maart 2026. Alterion | KvK: 81350643 | Keurmeesterstraat 53, 1187ZX Amstelveen
           </p>
         </div>
       </div>

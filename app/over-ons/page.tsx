@@ -15,10 +15,13 @@ export default function OverOnsPage() {
           <div className="space-y-6">
             <p className="text-primary font-bold uppercase tracking-widest text-sm">Over Alterion</p>
             <h1 className="text-4xl lg:text-6xl font-black text-secondary leading-[1.1] tracking-tight">
-              Wij versnellen de energietransitie
+              Alterion: Uw specialist in zonnepanelen en thuisbatterijen
             </h1>
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
-              Alterion maakt duurzame energie toegankelijk voor iedereen. Met onze slimme thuisbatterijen helpen wij huishoudens om onafhankelijk te worden van het energienet en hun energiekosten drastisch te verlagen.
+              Sinds 2020 is Alterion jouw betrouwbare partner in duurzame energie. Wij leveren hoogwaardige zonne-energieoplossingen die zowel het milieu als uw energierekening aanzienlijk verlagen.
+            </p>
+            <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+              Met meer dan 5 jaar ervaring en een team van deskundige monteurs bieden wij professionele installaties van zonnepanelen en thuisbatterijen tegen scherpe prijzen. Bij ons staan klanttevredenheid en transparante communicatie centraal, zodat u met een gerust hart kunt kiezen voor een duurzame investering.
             </p>
           </div>
           <div className="rounded-xl overflow-hidden shadow-2xl">
@@ -33,24 +36,22 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* Missie & Visie */}
+      {/* USPs */}
       <section className="py-24 bg-neutral-gray">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div className="bg-white p-10 rounded-xl shadow-sm border border-slate-100">
-              <span className="material-symbols-outlined text-primary text-4xl mb-6 block">flag</span>
-              <h2 className="text-2xl font-black text-secondary mb-4">Onze Missie</h2>
-              <p className="text-slate-600 leading-relaxed">
-                Wij geloven dat ieder huishouden toegang moet hebben tot slimme energieopslag. Door innovatieve technologie betaalbaar en toegankelijk te maken, dragen wij bij aan een duurzamere wereld waarin energie eerlijk verdeeld wordt.
-              </p>
-            </div>
-            <div className="bg-white p-10 rounded-xl shadow-sm border border-slate-100">
-              <span className="material-symbols-outlined text-primary text-4xl mb-6 block">visibility</span>
-              <h2 className="text-2xl font-black text-secondary mb-4">Onze Visie</h2>
-              <p className="text-slate-600 leading-relaxed">
-                Een toekomst waarin elk huis zijn eigen energiecentrale is. Waar zonnepanelen en thuisbatterijen samenwerken om huishoudens volledig energie-onafhankelijk te maken, zonder concessies aan comfort of gemak.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {[
+              { icon: "construction", title: "Professionele installaties" },
+              { icon: "payments", title: "Financieringsopties" },
+              { icon: "workspace_premium", title: "5+ jaar ervaring" },
+              { icon: "verified_user", title: "Lange garanties" },
+              { icon: "support_agent", title: "Klantenservice & ondersteuning" },
+            ].map((item) => (
+              <div key={item.title} className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center">
+                <span className="material-symbols-outlined text-primary text-4xl mb-4 block">{item.icon}</span>
+                <h3 className="text-lg font-bold text-secondary">{item.title}</h3>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -59,8 +60,10 @@ export default function OverOnsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-secondary">Waarom Alterion?</h2>
-            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">Wat ons onderscheidt van de rest</p>
+            <h2 className="text-3xl md:text-4xl font-black text-secondary">Eerlijk over duurzaamheid en kwaliteit</h2>
+            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+              Kies voor Alterion en ervaar eerlijke, betrouwbare en kwalitatieve service. Wij bieden complete ontzorging, van advies tot installatie van thuisbatterijen, zonnepanelen en laadpalen.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center">
@@ -74,11 +77,11 @@ export default function OverOnsPage() {
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+                <span className="material-symbols-outlined text-primary text-3xl">verified</span>
               </div>
-              <h3 className="text-xl font-bold text-secondary mb-3">AI-Gestuurd</h3>
+              <h3 className="text-xl font-bold text-secondary mb-3">Kwaliteitsgarantie</h3>
               <p className="text-slate-600 leading-relaxed">
-                Onze batterijen leren van uw verbruikspatroon en kopen energie in op de goedkoopste momenten.
+                Wij werken uitsluitend met hoogwaardige producten en bieden lange garanties op al onze installaties.
               </p>
             </div>
             <div className="text-center">
@@ -97,33 +100,49 @@ export default function OverOnsPage() {
       {/* Cijfers */}
       <section className="py-24 bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 text-center">
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">500+</p>
-              <p className="text-slate-400 font-medium">Installaties</p>
+              <p className="text-4xl md:text-5xl font-black text-primary mb-2">5,000</p>
+              <p className="text-slate-400 font-medium">Tevreden klanten</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">98%</p>
+              <p className="text-4xl md:text-5xl font-black text-primary mb-2">8.7</p>
               <p className="text-slate-400 font-medium">Klanttevredenheid</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">10</p>
-              <p className="text-slate-400 font-medium">Jaar Garantie</p>
+              <p className="text-4xl md:text-5xl font-black text-primary mb-2">1,000</p>
+              <p className="text-slate-400 font-medium">Thuisbatterijen</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">1 dag</p>
-              <p className="text-slate-400 font-medium">Installatietijd</p>
+              <p className="text-4xl md:text-5xl font-black text-primary mb-2">2,500</p>
+              <p className="text-slate-400 font-medium">Besparing euro&apos;s p/j</p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-black text-primary mb-2">2,250,305</p>
+              <p className="text-slate-400 font-medium">in kWH</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Werkwijze */}
+      {/* Duurzaamheid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-black text-secondary">Voor de toekomstige generatie</h2>
+            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+              Wij geloven dat de keuze voor duurzame energie een investering is in de toekomst van onze kinderen en kleinkinderen. Door vandaag te kiezen voor zonnepanelen en thuisbatterijen, dragen wij samen bij aan een schonere wereld voor de generaties na ons.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Werkwijze */}
+      <section className="py-24 bg-neutral-gray">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-secondary">Onze Werkwijze</h2>
-            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">In 4 stappen naar uw thuisbatterij</p>
+            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">In 4 stappen naar uw duurzame installatie</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
@@ -132,7 +151,7 @@ export default function OverOnsPage() {
               { step: "3", icon: "construction", title: "Installatie", desc: "Onze vakmensen installeren alles binnen één werkdag." },
               { step: "4", icon: "monitoring", title: "Monitoring", desc: "Via de app heeft u realtime inzicht in uw besparing." },
             ].map((item) => (
-              <div key={item.step} className="relative bg-neutral-gray p-8 rounded-xl">
+              <div key={item.step} className="relative bg-white p-8 rounded-xl">
                 <span className="absolute -top-4 left-6 bg-primary text-secondary font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">
                   {item.step}
                 </span>
@@ -146,17 +165,17 @@ export default function OverOnsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-neutral-gray">
+      <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-secondary mb-6">Klaar om te besparen?</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-secondary mb-6">Ben jij ook klaar voor duurzame energie?</h2>
           <p className="text-lg text-slate-600 mb-10">
-            Neem contact op voor een vrijblijvend adviesgesprek en ontdek hoeveel u kunt besparen met een Alterion thuisbatterij.
+            Kies voor de duurzame oplossingen van Alterion en profiteer van lagere energiekosten, hoogwaardige installaties en persoonlijke begeleiding van A tot Z. Neem vandaag nog contact op voor een vrijblijvend adviesgesprek.
           </p>
           <Link
             href="/contact"
             className="bg-primary text-secondary font-bold px-10 py-5 rounded-lg text-lg hover:brightness-105 transition-all inline-block shadow-lg shadow-primary/20"
           >
-            Neem contact op
+            Vraag advies aan
           </Link>
         </div>
       </section>
