@@ -102,23 +102,23 @@ export default function OverOnsPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-12 text-center">
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">5,000</p>
+              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">5,000</span>
               <p className="text-slate-400 font-medium">Tevreden klanten</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">8.7</p>
+              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">8.7</span>
               <p className="text-slate-400 font-medium">Klanttevredenheid</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">1,000</p>
+              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">1,000</span>
               <p className="text-slate-400 font-medium">Thuisbatterijen</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">2,500</p>
+              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">2,500</span>
               <p className="text-slate-400 font-medium">Besparing euro&apos;s p/j</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-black text-primary mb-2">2,250,305</p>
+              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">2,250,305</span>
               <p className="text-slate-400 font-medium">in kWH</p>
             </div>
           </div>
