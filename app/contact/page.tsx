@@ -1,11 +1,60 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Contact & Offerte – Alterion",
-  description: "Neem contact op met Alterion voor een vrijblijvende offerte.",
-};
-
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    naam: "",
+    email: "",
+    telefoon: "",
+    onderwerp: "Offerte aanvragen",
+    bericht: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess("");
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Er is iets misgegaan.");
+      } else {
+        setSuccess(data.message);
+        setFormData({
+          naam: "",
+          email: "",
+          telefoon: "",
+          onderwerp: "Offerte aanvragen",
+          bericht: "",
+        });
+      }
+    } catch {
+      setError("Er is iets misgegaan. Probeer het later opnieuw.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       {/* Hero */}
@@ -51,66 +100,93 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-2 bg-white p-8 md:p-12 rounded-xl shadow-sm border border-slate-100">
               <h2 className="text-2xl font-black text-secondary mb-8">Stuur ons een bericht</h2>
-              <form className="space-y-6">
+
+              {success && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+                  {success}
+                </div>
+              )}
+
+              {error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">Voornaam</label>
+                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">Naam *</label>
                     <input
+                      name="naam"
+                      value={formData.naam}
+                      onChange={handleChange}
                       className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="Uw voornaam"
+                      placeholder="Uw volledige naam"
                       type="text"
+                      required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">Achternaam</label>
+                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">E-mailadres *</label>
                     <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="Uw achternaam"
-                      type="text"
+                      placeholder="naam@voorbeeld.nl"
+                      type="email"
+                      required
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">E-mailadres</label>
-                    <input
-                      className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="naam@voorbeeld.nl"
-                      type="email"
-                    />
-                  </div>
-                  <div className="space-y-2">
                     <label className="text-sm font-bold text-secondary uppercase tracking-wider">Telefoonnummer</label>
                     <input
+                      name="telefoon"
+                      value={formData.telefoon}
+                      onChange={handleChange}
                       className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                       placeholder="+31 6 12345678"
                       type="tel"
                     />
                   </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-secondary uppercase tracking-wider">Onderwerp *</label>
+                    <select
+                      name="onderwerp"
+                      value={formData.onderwerp}
+                      onChange={handleChange}
+                      className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                      required
+                    >
+                      <option>Offerte aanvragen</option>
+                      <option>Vraag over producten</option>
+                      <option>Installatie informatie</option>
+                      <option>Klantenservice</option>
+                      <option>Anders</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-secondary uppercase tracking-wider">Onderwerp</label>
-                  <select className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent">
-                    <option>Offerte aanvragen</option>
-                    <option>Vraag over producten</option>
-                    <option>Installatie informatie</option>
-                    <option>Klantenservice</option>
-                    <option>Anders</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-secondary uppercase tracking-wider">Bericht</label>
+                  <label className="text-sm font-bold text-secondary uppercase tracking-wider">Bericht *</label>
                   <textarea
+                    name="bericht"
+                    value={formData.bericht}
+                    onChange={handleChange}
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Vertel ons hoe we u kunnen helpen..."
                     rows={5}
+                    required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-primary text-secondary font-bold px-10 py-4 rounded-lg text-lg hover:brightness-105 transition-all shadow-lg shadow-primary/20 w-full md:w-auto"
+                  disabled={loading}
+                  className="bg-primary text-secondary font-bold px-10 py-4 rounded-lg text-lg hover:brightness-105 transition-all shadow-lg shadow-primary/20 w-full md:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Verstuur bericht
+                  {loading ? "Verzenden..." : "Verstuur bericht"}
                 </button>
               </form>
             </div>
@@ -125,8 +201,8 @@ export default function ContactPage() {
           <div className="space-y-6">
             {[
               {
-                q: "Hoe snel kan mijn thuisbatterij geïnstalleerd worden?",
-                a: "Na goedkeuring van uw offerte plannen wij de installatie doorgaans binnen 14 dagen in. De installatie zelf duurt één werkdag."
+                q: "Hoe snel kan mijn thuisbatterij geinstalleerd worden?",
+                a: "Na goedkeuring van uw offerte plannen wij de installatie doorgaans binnen 14 dagen in. De installatie zelf duurt een werkdag."
               },
               {
                 q: "Is een offerte aanvragen gratis en vrijblijvend?",

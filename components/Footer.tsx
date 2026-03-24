@@ -66,6 +66,7 @@ export default function Footer() {
             <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/privacybeleid">Privacybeleid</Link>
             <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/voorwaarden">Algemene Voorwaarden</Link>
             <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/cookies">Cookiebeleid</Link>
+            <Link className="text-slate-500 hover:text-primary transition-colors text-xs" href="/disclaimer">Disclaimer</Link>
           </div>
         </div>
 
