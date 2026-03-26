@@ -1,5 +1,6 @@
 const MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000";
 const MEDUSA_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || "";
+const MEDUSA_REGION_ID = process.env.NEXT_PUBLIC_MEDUSA_REGION_ID || "";
 
 interface MedusaProduct {
   id: string;
@@ -57,7 +58,7 @@ async function medusaFetch<T>(path: string): Promise<T> {
 export async function getProducts(): Promise<MedusaProduct[]> {
   try {
     const data = await medusaFetch<MedusaResponse<MedusaProduct>>(
-      "/store/products?fields=*variants.calculated_price&currency_code=eur"
+      `/store/products?fields=*variants.calculated_price&region_id=${MEDUSA_REGION_ID}`
     );
     return data.products || [];
   } catch {
@@ -69,7 +70,7 @@ export async function getProducts(): Promise<MedusaProduct[]> {
 export async function getProductByHandle(handle: string): Promise<MedusaProduct | null> {
   try {
     const data = await medusaFetch<MedusaResponse<MedusaProduct>>(
-      `/store/products?handle=${handle}&fields=*variants.calculated_price&currency_code=eur`
+      `/store/products?handle=${handle}&fields=*variants.calculated_price&region_id=${MEDUSA_REGION_ID}`
     );
     return data.products?.[0] || null;
   } catch {
