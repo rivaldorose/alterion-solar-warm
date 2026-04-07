@@ -23,14 +23,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send to Zoho CRM if refresh token is configured
-    if (process.env.ZOHO_REFRESH_TOKEN) {
-      try {
-        await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
-      } catch (err) {
-        console.error("Zoho CRM error:", err);
-        // Don't fail the form submission if Zoho fails
-      }
+    // Send to Zoho CRM
+    try {
+      const zohoResult = await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
+      console.log("Zoho CRM result:", JSON.stringify(zohoResult));
+    } catch (err) {
+      console.error("Zoho CRM error details:", {
+        message: err instanceof Error ? err.message : String(err),
+        refreshTokenSet: !!process.env.ZOHO_REFRESH_TOKEN,
+        clientIdSet: !!process.env.ZOHO_CLIENT_ID,
+        clientSecretSet: !!process.env.ZOHO_CLIENT_SECRET,
+      });
     }
 
     console.log("Contact form submission:", { naam, email, telefoon, onderwerp, bericht });
