@@ -152,16 +152,33 @@ export default async function WebshopPage() {
                     </div>
                   </Link>
                   <div className="mt-auto pt-4 border-t border-slate-50 flex flex-col gap-4">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-secondary text-2xl font-black">{product.priceDisplay}</span>
-                    </div>
-                    <AddToCartButton
-                      slug={product.slug}
-                      name={product.name}
-                      price={product.price}
-                      image={product.image}
-                      label="Bestel nu"
-                    />
+                    {product.price > 0 ? (
+                      <>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-secondary text-2xl font-black">{product.priceDisplay}</span>
+                        </div>
+                        <AddToCartButton
+                          slug={product.slug}
+                          name={product.name}
+                          price={product.price}
+                          image={product.image}
+                          label="Bestel nu"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-secondary text-lg font-bold">Prijs op aanvraag</span>
+                        </div>
+                        <Link
+                          href={`/contact?product=${encodeURIComponent(product.name)}`}
+                          className="w-full bg-secondary text-white font-bold py-3 px-6 rounded-lg text-center hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                        >
+                          <span className="material-symbols-outlined text-lg">mail</span>
+                          Offerte aanvragen
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

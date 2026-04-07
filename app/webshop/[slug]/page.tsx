@@ -87,14 +87,22 @@ export default async function ProductDetailPage({ params }: Props) {
               <span className="text-xs text-slate-500 font-medium">(48 reviews)</span>
             </div>
             <h1 className="text-4xl font-black text-secondary mb-4 tracking-tight">{title}</h1>
-            <div className="flex items-baseline gap-4 mb-4">
-              <span className="text-3xl font-bold text-secondary">{formatPrice(price)}</span>
-            </div>
+            {price > 0 ? (
+              <div className="flex items-baseline gap-4 mb-4">
+                <span className="text-3xl font-bold text-secondary">{formatPrice(price)}</span>
+              </div>
+            ) : (
+              <div className="flex items-baseline gap-4 mb-4">
+                <span className="text-2xl font-bold text-secondary">Prijs op aanvraag</span>
+              </div>
+            )}
             <p className="text-slate-600 leading-relaxed mb-6">{description}</p>
-            <div className="flex items-center gap-2 mb-8">
-              <span className="size-2 bg-emerald-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-semibold text-emerald-600">Direct leverbaar uit voorraad</span>
-            </div>
+            {price > 0 && (
+              <div className="flex items-center gap-2 mb-8">
+                <span className="size-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span className="text-sm font-semibold text-emerald-600">Direct leverbaar uit voorraad</span>
+              </div>
+            )}
           </div>
 
           {/* Specs Grid */}
@@ -116,12 +124,22 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           {/* CTA */}
-          <AddToCartButton
-            slug={slug}
-            name={title}
-            price={price}
-            image={image}
-          />
+          {price > 0 ? (
+            <AddToCartButton
+              slug={slug}
+              name={title}
+              price={price}
+              image={image}
+            />
+          ) : (
+            <Link
+              href={`/contact?product=${encodeURIComponent(title)}`}
+              className="w-full bg-secondary text-white font-bold py-4 px-6 rounded-lg text-center text-lg hover:brightness-110 transition-all flex items-center justify-center gap-2"
+            >
+              <span className="material-symbols-outlined">mail</span>
+              Offerte aanvragen
+            </Link>
+          )}
         </div>
       </div>
 
