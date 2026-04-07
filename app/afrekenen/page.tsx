@@ -72,6 +72,11 @@ export default function AfrekenPage() {
             email: formData.get("email"),
             telefoon: formData.get("telefoon"),
           },
+          adres: {
+            straat: formData.get("straat"),
+            postcode: formData.get("postcode"),
+            plaats: formData.get("plaats"),
+          },
         }),
       });
 
@@ -159,6 +164,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Straat + huisnummer *</label>
                   <input
                     required
+                    name="straat"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Kerkstraat 12"
                     type="text"
@@ -168,6 +174,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Postcode *</label>
                   <input
                     required
+                    name="postcode"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="1234 AB"
                     type="text"
@@ -177,6 +184,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Plaats *</label>
                   <input
                     required
+                    name="plaats"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Amsterdam"
                     type="text"

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createMollieClient } from "@mollie/api-client";
+import { createZohoOrder } from "@/lib/zoho";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { items, customer } = body;
+    const { items, customer, adres } = body;
 
     if (!items?.length || !customer?.email) {
       return NextResponse.json(
@@ -40,13 +41,25 @@ export async function POST(request: NextRequest) {
         customer_email: customer.email,
         customer_name: customer.naam,
         customer_phone: customer.telefoon || "",
-        items: JSON.stringify(items.map((i: { name: string; quantity: number; price: number }) => ({
-          name: i.name,
-          qty: i.quantity,
-          price: i.price,
-        }))),
       },
     });
+
+    // Send order to Zoho CRM
+    try {
+      await createZohoOrder({
+        naam: customer.naam,
+        email: customer.email,
+        telefoon: customer.telefoon || "",
+        adres: adres?.straat || "",
+        postcode: adres?.postcode || "",
+        plaats: adres?.plaats || "",
+        items,
+        totaal: totalWithBtw,
+        paymentId: payment.id,
+      });
+    } catch (err) {
+      console.error("Zoho order error:", err);
+    }
 
     return NextResponse.json({
       checkoutUrl: payment.getCheckoutUrl(),

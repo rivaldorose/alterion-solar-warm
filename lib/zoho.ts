@@ -79,3 +79,52 @@ export async function createZohoLead(lead: {
   const data = await response.json();
   return data;
 }
+
+export async function createZohoOrder(order: {
+  naam: string;
+  email: string;
+  telefoon: string;
+  adres: string;
+  postcode: string;
+  plaats: string;
+  items: { name: string; quantity: number; price: number }[];
+  totaal: number;
+  paymentId: string;
+}) {
+  const accessToken = await getAccessToken();
+
+  const [voornaam, ...achternaamParts] = order.naam.split(" ");
+  const achternaam = achternaamParts.join(" ") || voornaam;
+
+  const productlijst = order.items
+    .map((item) => `${item.quantity}x ${item.name} — €${item.price.toLocaleString("nl-NL")}`)
+    .join("\n");
+
+  const response = await fetch(`${ZOHO_API_URL}/Leads`, {
+    method: "POST",
+    headers: {
+      Authorization: `Zoho-oauthtoken ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      data: [
+        {
+          First_Name: voornaam,
+          Last_Name: achternaam,
+          Email: order.email,
+          Phone: order.telefoon,
+          Lead_Source: "Webshop Bestelling",
+          Street: order.adres,
+          Zip_Code: order.postcode,
+          City: order.plaats,
+          Country: "Nederland",
+          Company: "Webshop Klant",
+          Description: `BESTELLING — Mollie ${order.paymentId}\n\nProducten:\n${productlijst}\n\nTotaal incl. BTW: €${order.totaal.toFixed(2)}\n\nAfleveradres:\n${order.adres}\n${order.postcode} ${order.plaats}`,
+        },
+      ],
+    }),
+  });
+
+  const data = await response.json();
+  return data;
+}
