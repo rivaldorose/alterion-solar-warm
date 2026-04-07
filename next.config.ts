@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "thuisbatterij.nl",
       },
+      {
+        protocol: "https",
+        hostname: "solplanet.net",
+      },
     ],
   },
   async headers() {

@@ -94,21 +94,21 @@ export default async function WebshopPage() {
                     <input className="rounded text-primary focus:ring-primary" type="checkbox" /> Omvormers
                   </label>
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-primary">
+                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> Zonnepanelen
+                  </label>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-primary">
                     <input className="rounded text-primary focus:ring-primary" type="checkbox" /> Laadpalen
                   </label>
                 </div>
               </div>
               <div className="pt-4 border-t border-slate-100">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Capaciteit</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Type</p>
                 <div className="flex flex-col gap-2">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-primary">
-                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> 5kWh - 10kWh
+                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> Particulier
                   </label>
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-primary">
-                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> 10kWh - 20kWh
-                  </label>
-                  <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-primary">
-                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> 20kWh+
+                    <input className="rounded text-primary focus:ring-primary" type="checkbox" /> Zakelijk
                   </label>
                 </div>
               </div>
@@ -121,9 +121,10 @@ export default async function WebshopPage() {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div className="flex gap-2 overflow-x-auto pb-2">
               <button className="px-4 py-2 rounded-lg bg-secondary text-white text-sm font-semibold whitespace-nowrap">Alle Producten</button>
-              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Lite Serie</button>
-              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Pro Serie</button>
-              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Max Serie</button>
+              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Batterijen</button>
+              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Omvormers</button>
+              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Zonnepanelen</button>
+              <button className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-secondary text-sm font-semibold hover:border-primary transition-colors whitespace-nowrap">Laadpalen</button>
             </div>
           </div>
 
