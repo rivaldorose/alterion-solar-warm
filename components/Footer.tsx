@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Producten */}
           <div>
             <h4 className="text-white font-bold mb-6">Producten</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-a">Marstek Venus A</Link></li>
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-ev3">Marstek Venus EV3</Link></li>
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-ev35">Marstek Venus EV3.5</Link></li>
@@ -34,7 +34,7 @@ export default function Footer() {
           {/* Bedrijf */}
           <div>
             <h4 className="text-white font-bold mb-6">Bedrijf</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/over-ons">Over Alterion</Link></li>
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop">Webshop</Link></li>
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/contact">Contact</Link></li>
@@ -44,7 +44,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-white font-bold mb-6">Contact</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <span className="material-symbols-outlined text-primary text-sm">mail</span>
                 info@alterion.nl
