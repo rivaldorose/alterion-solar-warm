@@ -14,15 +14,19 @@ async function getAccessToken(): Promise<string> {
     throw new Error("ZOHO_REFRESH_TOKEN is not set");
   }
 
+  const clientId = process.env.ZOHO_CLIENT_ID || "";
+  const clientSecret = process.env.ZOHO_CLIENT_SECRET || "";
+
+  const params = new URLSearchParams();
+  params.append("grant_type", "refresh_token");
+  params.append("client_id", clientId);
+  params.append("client_secret", clientSecret);
+  params.append("refresh_token", refreshToken);
+
   const response = await fetch(ZOHO_TOKEN_URL, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "refresh_token",
-      client_id: process.env.ZOHO_CLIENT_ID || "",
-      client_secret: process.env.ZOHO_CLIENT_SECRET || "",
-      refresh_token: refreshToken,
-    }),
+    body: params.toString(),
   });
 
   const data = await response.json();
