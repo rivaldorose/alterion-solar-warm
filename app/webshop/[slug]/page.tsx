@@ -2,6 +2,8 @@ import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import { getProductByHandle, getProductPrice, formatPrice } from "@/lib/medusa";
 
+export const revalidate = 300; // revalidate every 5 minutes
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

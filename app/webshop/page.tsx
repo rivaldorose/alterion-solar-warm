@@ -2,7 +2,7 @@ import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import { getProducts, getProductPrice, formatPrice, MedusaProduct } from "@/lib/medusa";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // revalidate every 5 minutes
 
 export const metadata = {
   title: "Webshop – Alterion",
