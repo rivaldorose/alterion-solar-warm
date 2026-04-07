@@ -164,7 +164,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </li>
               <li className="flex items-start gap-3 text-slate-600">
                 <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <span>Real-time monitoring via de gratis Alterion App.</span>
+                <span>Real-time monitoring via de bijgeleverde P1 meter.</span>
               </li>
               <li className="flex items-start gap-3 text-slate-600">
                 <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
