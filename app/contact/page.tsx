@@ -86,7 +86,7 @@ export default function ContactPage() {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
                 <span className="material-symbols-outlined text-primary text-3xl mb-4 block">call</span>
                 <h3 className="text-lg font-bold text-secondary mb-2">Telefoon</h3>
-                <p className="text-slate-600">+31 (0) 20 123 4567</p>
+                <p className="text-slate-600">085 222 4003</p>
                 <p className="text-sm text-slate-400 mt-1">Ma - Vr: 08:00 - 18:00</p>
               </div>
               <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100">

@@ -50,7 +50,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <span className="material-symbols-outlined text-primary text-sm">call</span>
-                +31 (0) 20 123 4567
+                085 222 4003
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <span className="material-symbols-outlined text-primary text-sm">location_on</span>
