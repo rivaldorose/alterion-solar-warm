@@ -55,7 +55,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-slate-400 text-sm">
                 <span className="material-symbols-outlined text-primary text-sm">location_on</span>
-                Keurmeesterstraat 53, Amstelveen
+                Keurmeesterstraat 53, 1187ZX Amstelveen
               </li>
             </ul>
           </div>

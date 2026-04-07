@@ -92,8 +92,9 @@ export default function ContactPage() {
               <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
                 <span className="material-symbols-outlined text-primary text-3xl mb-4 block">location_on</span>
                 <h3 className="text-lg font-bold text-secondary mb-2">Adres</h3>
+                <p className="text-slate-600">Alterion BV</p>
                 <p className="text-slate-600">Keurmeesterstraat 53</p>
-                <p className="text-slate-600">Amstelveen</p>
+                <p className="text-slate-600">1187ZX Amstelveen</p>
               </div>
             </div>
 
