@@ -52,7 +52,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
         <Link href="/" className="hover:text-secondary">Home</Link>
         <span className="material-symbols-outlined text-xs">chevron_right</span>
-        <Link href="/webshop" className="hover:text-secondary">Thuisbatterijen</Link>
+        <Link href="/webshop" className="hover:text-secondary">Producten</Link>
         <span className="material-symbols-outlined text-xs">chevron_right</span>
         <span className="text-secondary font-medium">{title}</span>
       </nav>
@@ -67,25 +67,16 @@ export default async function ProductDetailPage({ params }: Props) {
             className="max-w-md w-full drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
             src={image}
           />
-          <div className="absolute top-4 left-4 flex gap-2">
-            <span className="bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded">PREMIUM</span>
-            <span className="bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">OP VOORRAAD</span>
-          </div>
+          {price > 0 && (
+            <div className="absolute top-4 left-4 flex gap-2">
+              <span className="bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">OP VOORRAAD</span>
+            </div>
+          )}
         </div>
 
         {/* Right: Product Details */}
         <div className="flex flex-col justify-center">
           <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="flex text-primary">
-                <span className="material-symbols-outlined text-sm">star</span>
-                <span className="material-symbols-outlined text-sm">star</span>
-                <span className="material-symbols-outlined text-sm">star</span>
-                <span className="material-symbols-outlined text-sm">star</span>
-                <span className="material-symbols-outlined text-sm">star_half</span>
-              </div>
-              <span className="text-xs text-slate-500 font-medium">(48 reviews)</span>
-            </div>
             <h1 className="text-4xl font-black text-secondary mb-4 tracking-tight">{title}</h1>
             {price > 0 ? (
               <div className="flex items-baseline gap-4 mb-4">
@@ -148,7 +139,6 @@ export default async function ProductDetailPage({ params }: Props) {
         <div className="flex border-b border-slate-200 mb-8 overflow-x-auto">
           <button className="px-8 py-4 text-sm font-bold text-secondary border-b-2 border-primary whitespace-nowrap">Beschrijving</button>
           <button className="px-8 py-4 text-sm font-bold text-slate-400 border-b-2 border-transparent hover:text-secondary whitespace-nowrap">Specificaties</button>
-          <button className="px-8 py-4 text-sm font-bold text-slate-400 border-b-2 border-transparent hover:text-secondary whitespace-nowrap">Reviews (48)</button>
           <button className="px-8 py-4 text-sm font-bold text-slate-400 border-b-2 border-transparent hover:text-secondary whitespace-nowrap">Installatie</button>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
