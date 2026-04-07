@@ -14,8 +14,15 @@ async function getAccessToken(): Promise<string> {
     throw new Error("ZOHO_REFRESH_TOKEN is not set");
   }
 
-  const clientId = process.env.ZOHO_CLIENT_ID || "";
-  const clientSecret = process.env.ZOHO_CLIENT_SECRET || "";
+  const clientId = process.env.ZOHO_CLIENT_ID;
+  if (!clientId) {
+    throw new Error("ZOHO_CLIENT_ID is not set");
+  }
+
+  const clientSecret = process.env.ZOHO_CLIENT_SECRET;
+  if (!clientSecret) {
+    throw new Error("ZOHO_CLIENT_SECRET is not set");
+  }
 
   const params = new URLSearchParams();
   params.append("grant_type", "refresh_token");

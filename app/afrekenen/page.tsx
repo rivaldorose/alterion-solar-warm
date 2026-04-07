@@ -3,20 +3,17 @@
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 export default function AfrekenPage() {
   const { items, totalPrice, clearCart } = useCart();
   const [step, setStep] = useState<"checkout" | "success" | "loading">("checkout");
   const [error, setError] = useState("");
-  const searchParams = useSearchParams();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format(price);
 
-  // Check if redirected back from Mollie with success
-  const status = searchParams.get("status");
-  if (status === "success" || step === "success") {
+  // Only show success after the client-side checkout flow completes
+  if (step === "success") {
     return (
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
         <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -63,8 +60,7 @@ export default function AfrekenPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map((item) => ({
-            name: item.name,
-            price: item.price,
+            slug: item.slug,
             quantity: item.quantity,
           })),
           customer: {

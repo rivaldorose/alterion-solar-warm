@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { createMollieClient } from "@mollie/api-client";
 
 export async function POST(request: NextRequest) {
+  // Verify webhook secret
+  const webhookSecret = process.env.MOLLIE_WEBHOOK_SECRET;
+  if (webhookSecret) {
+    const url = new URL(request.url);
+    const secret = url.searchParams.get("secret");
+    if (secret !== webhookSecret) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+  }
+
   try {
     const body = await request.formData();
     const paymentId = body.get("id") as string;
