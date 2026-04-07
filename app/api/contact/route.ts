@@ -33,17 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      {
-        message: "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op.",
-        debug: {
-          zohoStatus,
-          envCheck: {
-            refreshToken: !!process.env.ZOHO_REFRESH_TOKEN,
-            clientId: !!process.env.ZOHO_CLIENT_ID,
-            clientSecret: !!process.env.ZOHO_CLIENT_SECRET,
-          }
-        }
-      },
+      { message: "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op." },
       { status: 200 }
     );
   } catch {
