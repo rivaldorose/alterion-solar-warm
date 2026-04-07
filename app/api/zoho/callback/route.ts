@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       client_id: process.env.ZOHO_CLIENT_ID || "",
       client_secret: process.env.ZOHO_CLIENT_SECRET || "",
       code,
-      redirect_uri: `${process.env.NEXT_PUBLIC_SITE_URL || "https://alterion.nl"}/api/zoho/callback`,
+      redirect_uri: `https://alterion-solar-warm.vercel.app/api/zoho/callback`,
     }),
   });
 
