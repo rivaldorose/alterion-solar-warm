@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createZohoLead } from "@/lib/zoho";
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,11 +23,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Zoho CRM integration — waiting for API keys from Jamal
-    // When keys are available:
-    // 1. Authenticate with Zoho using Client ID + Client Secret
-    // 2. Create a new Lead/Contact in Zoho CRM with the form data
-    // 3. Optionally send confirmation email
+    // Send to Zoho CRM if refresh token is configured
+    if (process.env.ZOHO_REFRESH_TOKEN) {
+      try {
+        await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
+      } catch (err) {
+        console.error("Zoho CRM error:", err);
+        // Don't fail the form submission if Zoho fails
+      }
+    }
 
     console.log("Contact form submission:", { naam, email, telefoon, onderwerp, bericht });
 
