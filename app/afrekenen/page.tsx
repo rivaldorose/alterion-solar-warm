@@ -3,23 +3,27 @@
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function AfrekenPage() {
   const { items, totalPrice, clearCart } = useCart();
-  const [step, setStep] = useState<"checkout" | "success">("checkout");
+  const [step, setStep] = useState<"checkout" | "success" | "loading">("checkout");
+  const [error, setError] = useState("");
+  const searchParams = useSearchParams();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format(price);
 
-  if (step === "success") {
+  // Check if redirected back from Mollie with success
+  const status = searchParams.get("status");
+  if (status === "success" || step === "success") {
     return (
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
         <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8">
           <span className="material-symbols-outlined text-emerald-600 text-4xl">check_circle</span>
         </div>
-        <h1 className="text-3xl font-black text-secondary mb-4">Bestelling geplaatst!</h1>
+        <h1 className="text-3xl font-black text-secondary mb-4">Betaling ontvangen!</h1>
         <p className="text-slate-600 mb-2">Bedankt voor uw bestelling. U ontvangt een bevestiging per e-mail.</p>
-        <p className="text-slate-400 text-sm mb-10">Ordernummer: ALT-{Math.random().toString(36).substring(2, 8).toUpperCase()}</p>
         <Link
           href="/"
           className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all inline-block"
@@ -45,10 +49,45 @@ export default function AfrekenPage() {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearCart();
-    setStep("success");
+    setError("");
+    setStep("loading");
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+          })),
+          customer: {
+            naam: `${formData.get("voornaam")} ${formData.get("achternaam")}`,
+            email: formData.get("email"),
+            telefoon: formData.get("telefoon"),
+          },
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.checkoutUrl) {
+        clearCart();
+        window.location.href = data.checkoutUrl;
+      } else {
+        setError(data.error || "Er is iets misgegaan.");
+        setStep("checkout");
+      }
+    } catch {
+      setError("Kan geen verbinding maken met de betaalservice.");
+      setStep("checkout");
+    }
   };
 
   return (
@@ -70,6 +109,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Voornaam *</label>
                   <input
                     required
+                    name="voornaam"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Jan"
                     type="text"
@@ -79,6 +119,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Achternaam *</label>
                   <input
                     required
+                    name="achternaam"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="de Vries"
                     type="text"
@@ -88,6 +129,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">E-mailadres *</label>
                   <input
                     required
+                    name="email"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="jan@voorbeeld.nl"
                     type="email"
@@ -97,6 +139,7 @@ export default function AfrekenPage() {
                   <label className="text-sm font-bold text-secondary uppercase tracking-wider">Telefoon *</label>
                   <input
                     required
+                    name="telefoon"
                     className="w-full p-4 rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="+31 6 12345678"
                     type="tel"
@@ -202,15 +245,28 @@ export default function AfrekenPage() {
                 <span className="font-black text-secondary text-2xl">{formatPrice(totalPrice * 1.21)}</span>
               </div>
             </div>
+            {error && (
+              <p className="text-red-500 text-sm font-medium mb-4">{error}</p>
+            )}
             <button
               type="submit"
-              className="w-full bg-primary text-secondary font-bold py-4 rounded-lg text-lg hover:brightness-105 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+              disabled={step === "loading"}
+              className="w-full bg-primary text-secondary font-bold py-4 rounded-lg text-lg hover:brightness-105 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="material-symbols-outlined">lock</span>
-              Bestelling plaatsen
+              {step === "loading" ? (
+                <>
+                  <span className="material-symbols-outlined animate-spin">progress_activity</span>
+                  Bezig met doorsturen...
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">lock</span>
+                  Afrekenen via Mollie
+                </>
+              )}
             </button>
             <p className="text-center text-slate-400 text-xs mt-4">
-              Door te bestellen gaat u akkoord met onze algemene voorwaarden.
+              U wordt doorgestuurd naar een beveiligde betaalpagina.
             </p>
           </div>
         </div>
