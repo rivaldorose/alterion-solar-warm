@@ -9,9 +9,9 @@ interface Props {
 }
 
 const productDetails: Record<string, { capacity: string; power: string; weight: string }> = {
-  "marstek-venus-a": { capacity: "2.12 kWh", power: "1.5 kW", weight: "30 kg" },
-  "marstek-venus-ev3": { capacity: "5.12 kWh", power: "2.5 kW", weight: "60 kg" },
-  "marstek-venus-ev35": { capacity: "15.36 kWh", power: "7.5 kW", weight: "180 kg" },
+  "marstek-venus-a": { capacity: "2.12 kWh (max 12.72 kWh)", power: "1.5 kW", weight: "17 kg/module" },
+  "marstek-venus-ev3": { capacity: "5.12 kWh (max 15.36 kWh)", power: "2.5 kW", weight: "63 kg" },
+  "marstek-venus-ev35": { capacity: "15.36 kWh", power: "7.5 kW", weight: "189 kg" },
 };
 
 const fallbackData: Record<string, { title: string; description: string; price: number; image: string }> = {
@@ -153,22 +153,30 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold text-secondary mb-4">Energiebeheer van de toekomst</h3>
+            <h3 className="text-2xl font-bold text-secondary mb-4">Slim energiebeheer voor uw woning</h3>
             <p className="text-slate-600 mb-4 leading-relaxed">
-              De {title} is niet zomaar een batterij; het is het hart van uw slimme woning. Door gebruik te maken van geavanceerde LFP (Lithium-ijzer-fosfaat) technologie, garanderen wij een levensduur van meer dan 15 jaar en een veiligheidsprofiel dat onge&euml;venaard is in de industrie.
+              {description}
             </p>
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-3 text-slate-600">
                 <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <span>Eenvoudige integratie met alle bestaande zonnepaneel-omvormers.</span>
+                <span>Plug & play installatie — geen ingewikkelde bekabeling nodig.</span>
               </li>
               <li className="flex items-start gap-3 text-slate-600">
                 <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <span>Real-time monitoring via de bijgeleverde P1 meter.</span>
+                <span>LiFePO4 technologie — veilig, stabiel en 6000+ laadcycli.</span>
               </li>
               <li className="flex items-start gap-3 text-slate-600">
                 <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <span>Slim laden op basis van dynamische energietarieven.</span>
+                <span>AI-gestuurd slim laden op basis van dynamische energietarieven.</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-600">
+                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                <span>Back-upfunctie bij stroomuitval — essentiële apparaten blijven werken.</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-600">
+                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
+                <span>10 jaar fabrieksgarantie.</span>
               </li>
             </ul>
           </div>
