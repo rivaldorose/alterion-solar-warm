@@ -93,14 +93,11 @@ export async function createZohoOrder(order: {
 }) {
   const accessToken = await getAccessToken();
 
-  const [voornaam, ...achternaamParts] = order.naam.split(" ");
-  const achternaam = achternaamParts.join(" ") || voornaam;
-
   const productlijst = order.items
     .map((item) => `${item.quantity}x ${item.name} — €${item.price.toLocaleString("nl-NL")}`)
     .join("\n");
 
-  const response = await fetch(`${ZOHO_API_URL}/Leads`, {
+  const response = await fetch(`${ZOHO_API_URL}/Deals`, {
     method: "POST",
     headers: {
       Authorization: `Zoho-oauthtoken ${accessToken}`,
@@ -109,17 +106,12 @@ export async function createZohoOrder(order: {
     body: JSON.stringify({
       data: [
         {
-          First_Name: voornaam,
-          Last_Name: achternaam,
-          Email: order.email,
-          Phone: order.telefoon,
-          Lead_Source: "Webshop Bestelling",
-          Street: order.adres,
-          Zip_Code: order.postcode,
-          City: order.plaats,
-          Country: "Nederland",
-          Company: "Webshop Klant",
-          Description: `BESTELLING — Mollie ${order.paymentId}\n\nProducten:\n${productlijst}\n\nTotaal incl. BTW: €${order.totaal.toFixed(2)}\n\nAfleveradres:\n${order.adres}\n${order.postcode} ${order.plaats}`,
+          Deal_Name: `Bestelling ${order.paymentId} — ${order.naam}`,
+          Stage: "Closed Won",
+          Amount: order.totaal,
+          Contact_Name: order.naam,
+          Description: `Klant: ${order.naam}\nEmail: ${order.email}\nTelefoon: ${order.telefoon}\n\nAfleveradres:\n${order.adres}\n${order.postcode} ${order.plaats}\n\nProducten:\n${productlijst}\n\nTotaal incl. BTW: €${order.totaal.toFixed(2)}\nMollie ID: ${order.paymentId}`,
+          Lead_Source: "Webshop",
         },
       ],
     }),
