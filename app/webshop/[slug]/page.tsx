@@ -9,29 +9,29 @@ interface Props {
 }
 
 const productDetails: Record<string, { capacity: string; power: string; weight: string }> = {
-  "thuisbatterij-lite": { capacity: "5 kWh", power: "2.5 kW", weight: "45 kg" },
-  "thuisbatterij-pro": { capacity: "10 kWh", power: "5.0 kW", weight: "94 kg" },
-  "thuisbatterij-max": { capacity: "20 kWh", power: "10.0 kW", weight: "150 kg" },
+  "marstek-venus-a": { capacity: "2.12 kWh", power: "1.5 kW", weight: "30 kg" },
+  "marstek-venus-ev3": { capacity: "5.12 kWh", power: "2.5 kW", weight: "60 kg" },
+  "marstek-venus-ev35": { capacity: "15.36 kWh", power: "7.5 kW", weight: "180 kg" },
 };
 
 const fallbackData: Record<string, { title: string; description: string; price: number; image: string }> = {
-  "thuisbatterij-lite": {
-    title: "Thuisbatterij Lite",
-    description: "Compacte opslag (5kWh) voor kleinere huishoudens en appartementen. Ideaal als instapmodel voor slim energiebeheer.",
-    price: 2499,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBDYQOvNfAzDQrUUtlXVWBr6_OSf4gevdOi2w7V3tcKulAcxT8CIhELEVOUnsyD01vRvvYlu-Y2WgAWdabJs6WsgUZifk6iZQ71gSLYDXJqZzVOiUdmQeqKENdq9aCSpcAPtevTpdgj-Hv_BJRTAyjY9y6YSgx5LoS0DBVWunu399j54NW1yUgxv6f7yX8IZ5kwfe__nT2eLWlJYt2VzxhVNc-5ew5BaeltRPl9QqN9nRcXFzI-brHXr8cv77j3w1pRzWkCJ9aPTOiu",
+  "marstek-venus-a": {
+    title: "Marstek Venus A",
+    description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer en 4 MPPT-trackers. LiFePO4 technologie, 6000+ cycli, 10 jaar garantie.",
+    price: 3750,
+    image: "https://thuisbatterij.nl/wp-content/uploads/2025/09/Marstek-Venus-A-plug-in-thuisbatterij.png",
   },
-  "thuisbatterij-pro": {
-    title: "Thuisbatterij Pro",
-    description: "De ideale balans (10kWh) voor het gemiddelde gezin met zonnepanelen. AI-gestuurd energiebeheer voor maximale besparing.",
-    price: 4599,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAcKsNhQWiLRyOe5H8Q3I0dvtlk9j4MjjCXL83PXgNCiApFJ55LtXcJ7fSW-wppiEZyt8NMFj3gys445zK1Myay_sbieDrtQpgji7XuEgCPnAAbQwomRZ2a0_mAcfFDlx8ustugGrPmXLwsk2-v39cpvfpckvt8Ou8IuGwbcs0PK_wYIVtuaDScHevNhm0AK-SzsLudEHuFTOgWwWLQoO_T2m96HnGTxsDoER_gVyUssHW8BMNYNkFswOweLLYQmGSRbyYUABu6s3Ey",
+  "marstek-venus-ev3": {
+    title: "Marstek Venus EV3",
+    description: "Plug & Play thuisbatterij met 5.12 kWh opslag en 2.5 kW omvormer. LiFePO4, schaalbaar tot 15.36 kWh. Incl. P1 meter.",
+    price: 1299,
+    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
   },
-  "thuisbatterij-max": {
-    title: "Thuisbatterij Max",
-    description: "Maximale capaciteit (20kWh+) voor volledige energie-onafhankelijkheid. De ultieme oplossing voor grote woningen.",
-    price: 7299,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBdoiAWs5cTm_w4U4CYjhtFK-MHIFW1qSDpkhFo2hnyP4bYox_con-DugIDhw835ozargle4-0VvjMVPRfPt_4sOxUxRWZBcATw14UTsJrody_lVbv2E6ZDlBa5kX8SpM7ieprD4uYoOb_kLJc05XJniwwxtojKNuqgcVnOnyAx59IPdZbLy-CyODY9_gJ70dFiWGluF1jmdy10VjhKhL_guRdXJSBNAIazCVXTVBeoWSHDiVqMFz-X0OsuIZEvtSywjyC6mgewNVIq",
+  "marstek-venus-ev35": {
+    title: "Marstek Venus EV3.5",
+    description: "Uitgebreide Plug & Play thuisbatterij met 15.36 kWh opslag en 7.5 kW vermogen. 3 modules, LiFePO4, maximale onafhankelijkheid.",
+    price: 3499,
+    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
   },
 };
 

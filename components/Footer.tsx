@@ -24,9 +24,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Producten</h4>
             <ul className="space-y-4">
-              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-lite">Thuisbatterij Lite</Link></li>
-              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-pro">Thuisbatterij Pro</Link></li>
-              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/thuisbatterij-max">Thuisbatterij Max</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-a">Marstek Venus A</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-ev3">Marstek Venus EV3</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop/marstek-venus-ev35">Marstek Venus EV3.5</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop">Alle producten</Link></li>
             </ul>
           </div>
 
@@ -35,7 +36,7 @@ export default function Footer() {
             <h4 className="text-white font-bold mb-6">Bedrijf</h4>
             <ul className="space-y-4">
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/over-ons">Over Alterion</Link></li>
-              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/diensten">Calculator</Link></li>
+              <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/webshop">Webshop</Link></li>
               <li><Link className="text-slate-400 text-sm hover:text-primary transition-colors" href="/contact">Contact</Link></li>
             </ul>
           </div>
