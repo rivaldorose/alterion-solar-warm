@@ -24,22 +24,26 @@ export async function POST(request: NextRequest) {
     }
 
     // Send to Zoho CRM
+    let zohoStatus = "skipped";
     try {
       const zohoResult = await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
-      console.log("Zoho CRM result:", JSON.stringify(zohoResult));
+      zohoStatus = JSON.stringify(zohoResult);
     } catch (err) {
-      console.error("Zoho CRM error details:", {
-        message: err instanceof Error ? err.message : String(err),
-        refreshTokenSet: !!process.env.ZOHO_REFRESH_TOKEN,
-        clientIdSet: !!process.env.ZOHO_CLIENT_ID,
-        clientSecretSet: !!process.env.ZOHO_CLIENT_SECRET,
-      });
+      zohoStatus = `error: ${err instanceof Error ? err.message : String(err)}`;
     }
 
-    console.log("Contact form submission:", { naam, email, telefoon, onderwerp, bericht });
-
     return NextResponse.json(
-      { message: "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op." },
+      {
+        message: "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op.",
+        debug: {
+          zohoStatus,
+          envCheck: {
+            refreshToken: !!process.env.ZOHO_REFRESH_TOKEN,
+            clientId: !!process.env.ZOHO_CLIENT_ID,
+            clientSecret: !!process.env.ZOHO_CLIENT_SECRET,
+          }
+        }
+      },
       { status: 200 }
     );
   } catch {
