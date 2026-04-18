@@ -1,39 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createZohoLead } from "@/lib/zoho";
+import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 
-// Simple in-memory rate limiter
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 10; // requests per minute
-const RATE_WINDOW = 60_000; // 1 minute in ms
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
-    return false;
-  }
-
-  entry.count++;
-  return entry.count > RATE_LIMIT;
-}
+const RATE_LIMIT = 10;
+const RATE_WINDOW = 60_000;
 
 export async function POST(request: NextRequest) {
-  // Rate limiting
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (isRateLimited(ip)) {
+  const ip = getClientIp(request.headers);
+  const rl = checkRateLimit(`contact:${ip}`, RATE_LIMIT, RATE_WINDOW);
+  if (rl.limited) {
     return NextResponse.json(
       { error: "Te veel verzoeken. Probeer het later opnieuw." },
-      { status: 429 }
+      {
+        status: 429,
+        headers: {
+          "Retry-After": Math.ceil((rl.resetAt - Date.now()) / 1000).toString(),
+        },
+      }
     );
   }
 
   try {
     const body = await request.json();
-    const { naam, email, telefoon, onderwerp, bericht } = body;
+    const { naam, email, telefoon, onderwerp, bericht, website } = body;
 
-    // Validate required fields
+    // Honeypot — silently accept but drop bot submissions
+    if (typeof website === "string" && website.length > 0) {
+      return NextResponse.json(
+        { message: "Bedankt voor uw bericht!" },
+        { status: 200 }
+      );
+    }
+
     if (!naam || !email || !onderwerp || !bericht) {
       return NextResponse.json(
         { error: "Vul alle verplichte velden in (naam, email, onderwerp, bericht)." },
@@ -41,7 +39,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Input length validation
     if (typeof naam !== "string" || naam.length > 100) {
       return NextResponse.json({ error: "Naam is te lang (max 100 tekens)." }, { status: 400 });
     }
@@ -54,8 +51,10 @@ export async function POST(request: NextRequest) {
     if (typeof bericht !== "string" || bericht.length > 5000) {
       return NextResponse.json({ error: "Bericht is te lang (max 5000 tekens)." }, { status: 400 });
     }
+    if (telefoon && (typeof telefoon !== "string" || telefoon.length > 30)) {
+      return NextResponse.json({ error: "Telefoonnummer is ongeldig." }, { status: 400 });
+    }
 
-    // Email regex validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -64,7 +63,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send to Zoho CRM
     try {
       await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
     } catch (err) {

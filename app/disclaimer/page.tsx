@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export const metadata = {
   title: "Disclaimer – Alterion",
   description: "Lees de disclaimer van Alterion.",

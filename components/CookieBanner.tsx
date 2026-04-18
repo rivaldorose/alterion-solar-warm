@@ -1,6 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
+
+function subscribeCookie() {
+  return () => {};
+}
+
+function getCookieSnapshot() {
+  return getCookie('alterion_cookie_consent');
+}
+
+function getCookieServerSnapshot() {
+  return null;
+}
 
 interface CookiePrefs {
   necessary: boolean;
@@ -20,7 +32,12 @@ function setCookie(name: string, value: string, days: number) {
 }
 
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false);
+  const consent = useSyncExternalStore(
+    subscribeCookie,
+    getCookieSnapshot,
+    getCookieServerSnapshot
+  );
+  const [dismissed, setDismissed] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
   const [prefs, setPrefs] = useState<CookiePrefs>({
     necessary: true,
@@ -29,12 +46,8 @@ export default function CookieBanner() {
     marketing: false,
   });
 
-  useEffect(() => {
-    const consent = getCookie('alterion_cookie_consent');
-    if (!consent) {
-      setVisible(true);
-    }
-  }, []);
+  const visible = !consent && !dismissed;
+  const setVisible = (v: boolean) => setDismissed(!v);
 
   const acceptAll = () => {
     setCookie('alterion_cookie_consent', 'all', 365);

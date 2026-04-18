@@ -6,30 +6,11 @@ import { useState } from "react";
 
 export default function AfrekenPage() {
   const { items, totalPrice, clearCart } = useCart();
-  const [step, setStep] = useState<"checkout" | "success" | "loading">("checkout");
+  const [step, setStep] = useState<"checkout" | "loading">("checkout");
   const [error, setError] = useState("");
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" }).format(price);
-
-  // Only show success after the client-side checkout flow completes
-  if (step === "success") {
-    return (
-      <div className="max-w-2xl mx-auto px-6 py-24 text-center">
-        <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8">
-          <span className="material-symbols-outlined text-emerald-600 text-4xl">check_circle</span>
-        </div>
-        <h1 className="text-3xl font-black text-secondary mb-4">Betaling ontvangen!</h1>
-        <p className="text-slate-600 mb-2">Bedankt voor uw bestelling. U ontvangt een bevestiging per e-mail.</p>
-        <Link
-          href="/"
-          className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all inline-block"
-        >
-          Terug naar home
-        </Link>
-      </div>
-    );
-  }
 
   if (items.length === 0) {
     return (

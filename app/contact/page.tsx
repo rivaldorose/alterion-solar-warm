@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +9,7 @@ export default function ContactPage() {
     telefoon: "",
     onderwerp: "Offerte aanvragen",
     bericht: "",
+    website: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -46,6 +46,7 @@ export default function ContactPage() {
           telefoon: "",
           onderwerp: "Offerte aanvragen",
           bericht: "",
+          website: "",
         });
       }
     } catch {
@@ -115,6 +116,19 @@ export default function ContactPage() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}>
+                  <label>
+                    Website (laat leeg)
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-secondary uppercase tracking-wider">Naam *</label>
