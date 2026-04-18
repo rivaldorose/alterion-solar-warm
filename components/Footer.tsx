@@ -61,6 +61,18 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Certificaten */}
+        <div className="pb-12 mb-12 border-b border-slate-800">
+          <h4 className="text-white font-bold mb-6 text-center">Certificaten</h4>
+          <div className="flex flex-wrap justify-center gap-4">
+            {["NEN 1010", "NEN 3140", "VCA", "InstallQ", "Techniek Nederland", "ELBHO"].map((cert) => (
+              <div key={cert} className="bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg border border-white/10">
+                <span className="text-white text-sm font-semibold">{cert}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-xs">&copy; {new Date().getFullYear()} Alterion Energy Solutions. Alle rechten voorbehouden.</p>
           <div className="flex gap-6">
