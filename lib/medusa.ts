@@ -104,4 +104,92 @@ export function formatPrice(amount: number): string {
   }).format(amount);
 }
 
+// --- Cart / Order helpers (server-side only, used in API routes) ---
+
+async function medusaStoreRequest<T>(
+  path: string,
+  init: RequestInit = {}
+): Promise<T> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10_000);
+
+  const res = await fetch(`${MEDUSA_BACKEND_URL}${path}`, {
+    ...init,
+    headers: {
+      "x-publishable-api-key": MEDUSA_PUBLISHABLE_KEY,
+      "Content-Type": "application/json",
+      ...(init.headers || {}),
+    },
+    signal: controller.signal,
+    cache: "no-store",
+  });
+
+  clearTimeout(timeout);
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Medusa API ${res.status}: ${text.slice(0, 200)}`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
+export async function createMedusaCart(input: {
+  email: string;
+  items: { variantId: string; quantity: number }[];
+  shippingAddress?: {
+    first_name: string;
+    last_name: string;
+    address_1: string;
+    postal_code: string;
+    city: string;
+    country_code: string;
+    phone?: string;
+  };
+}): Promise<{ id: string } | null> {
+  try {
+    const data = await medusaStoreRequest<{ cart: { id: string } }>(
+      `/store/carts`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          region_id: MEDUSA_REGION_ID,
+          email: input.email,
+          items: input.items.map((i) => ({
+            variant_id: i.variantId,
+            quantity: i.quantity,
+          })),
+          shipping_address: input.shippingAddress,
+        }),
+      }
+    );
+    return { id: data.cart.id };
+  } catch (err) {
+    console.error("Medusa createCart error:", err);
+    return null;
+  }
+}
+
+export async function completeMedusaCart(
+  cartId: string
+): Promise<{ orderId: string } | null> {
+  try {
+    const data = await medusaStoreRequest<{
+      type?: string;
+      order?: { id: string };
+      cart?: { id: string };
+    }>(`/store/carts/${cartId}/complete`, { method: "POST" });
+
+    if (data.order?.id) return { orderId: data.order.id };
+    return null;
+  } catch (err) {
+    console.error("Medusa completeCart error:", err);
+    return null;
+  }
+}
+
+export function getVariantId(product: MedusaProduct): string | null {
+  return product.variants?.[0]?.id || null;
+}
+
 export type { MedusaProduct };

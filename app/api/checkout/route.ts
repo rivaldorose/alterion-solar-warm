@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createMollieClient } from "@mollie/api-client";
-import { getProductByHandle, getProductPrice } from "@/lib/medusa";
+import {
+  getProductByHandle,
+  getProductPrice,
+  getVariantId,
+  createMedusaCart,
+} from "@/lib/medusa";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 
 const RATE_LIMIT = 5;
@@ -43,7 +48,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Telefoonnummer is ongeldig." }, { status: 400 });
     }
 
-    const resolvedItems: { name: string; slug: string; price: number; quantity: number }[] = [];
+    const resolvedItems: {
+      name: string;
+      slug: string;
+      price: number;
+      quantity: number;
+      variantId: string | null;
+    }[] = [];
 
     for (const item of items) {
       const { slug, quantity } = item;
@@ -80,6 +91,7 @@ export async function POST(request: NextRequest) {
         slug,
         price,
         quantity,
+        variantId: getVariantId(product),
       });
     }
 
@@ -99,6 +111,37 @@ export async function POST(request: NextRequest) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.alterion.nl";
 
+    // Create MedusaJS cart (non-blocking — if Medusa is down we still take the payment)
+    const [voornaam, ...achternaamRest] = customer.naam.split(" ");
+    const achternaam = achternaamRest.join(" ") || voornaam;
+
+    const variantItems = resolvedItems
+      .filter((i) => i.variantId)
+      .map((i) => ({ variantId: i.variantId as string, quantity: i.quantity }));
+
+    let cartId: string | null = null;
+    if (variantItems.length === resolvedItems.length) {
+      const cart = await createMedusaCart({
+        email: customer.email,
+        items: variantItems,
+        shippingAddress: {
+          first_name: voornaam,
+          last_name: achternaam,
+          address_1: adres?.straat || "",
+          postal_code: adres?.postcode || "",
+          city: adres?.plaats || "",
+          country_code: "nl",
+          phone: customer.telefoon || "",
+        },
+      });
+      cartId = cart?.id || null;
+    }
+
+    const webhookSecret = process.env.MOLLIE_WEBHOOK_SECRET;
+    const webhookUrl = webhookSecret
+      ? `${siteUrl}/api/checkout/webhook?s=${encodeURIComponent(webhookSecret)}`
+      : `${siteUrl}/api/checkout/webhook`;
+
     const payment = await mollieClient.payments.create({
       amount: {
         currency: "EUR",
@@ -106,7 +149,7 @@ export async function POST(request: NextRequest) {
       },
       description: `Alterion - ${description}`,
       redirectUrl: `${siteUrl}/afrekenen/bevestiging`,
-      webhookUrl: `${siteUrl}/api/checkout/webhook`,
+      webhookUrl,
       metadata: {
         customer_email: customer.email,
         customer_name: customer.naam,
@@ -121,6 +164,7 @@ export async function POST(request: NextRequest) {
           quantity: i.quantity,
         })),
         total: totalWithBtw,
+        medusa_cart_id: cartId,
       },
     });
 
