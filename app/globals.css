@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 @import "tailwindcss";
 
 @theme inline {
@@ -28,8 +26,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-poppins);
 }
 
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined' !important;
+/* Material icon base styles. The `:not(.loaded)` fallback hides the raw ligature
+   label (e.g. "home", "shopping_cart") until the actual glyph font has rendered,
+   so the icon name never flashes in the UI if the font is slow or blocked. */
+.material-symbols-outlined,
+.material-icons {
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -41,21 +42,26 @@ h1, h2, h3, h4, h5, h6 {
   word-wrap: normal;
   direction: ltr;
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined', 'Material Icons', sans-serif;
 }
 
 .material-icons {
-  font-family: 'Material Icons' !important;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Material Icons', 'Material Symbols Outlined', sans-serif;
+}
+
+/* Guard: if neither icon font has loaded, keep the ligature text invisible
+   instead of showing "home" / "shopping_cart" / etc. as literal text. */
+html:not(.icons-loaded) .material-symbols-outlined,
+html:not(.icons-loaded) .material-icons {
+  color: transparent;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
 }
 
 @keyframes scroll {
