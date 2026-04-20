@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Calculator from "@/components/Calculator";
 import BrandIcon from "@/components/BrandIcon";
+import BatteryInfoPopup from "@/components/BatteryInfoPopup";
 
 const partners = [
   { name: "Alliander", src: "/partners/alliander.png" },
@@ -28,6 +29,7 @@ export default function HomePage() {
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
               Bespaar op uw energierekening met de slimme thuisbatterijen van Alterion. Duurzaam, effici&euml;nt en klaar voor de toekomst van energie.
             </p>
+            <BatteryInfoPopup />
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/diensten"
