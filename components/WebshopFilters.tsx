@@ -17,6 +17,7 @@ export interface WebshopProduct {
 
 type Category = "all" | "batterijen" | "omvormers" | "zonnepanelen" | "laadpalen";
 type Segment = "all" | "particulier" | "zakelijk";
+type Brand = "all" | "marstek" | "solplanet" | "hyxipower" | "alterion";
 
 // Slug-based category mapping. Keep in sync with product handles in Medusa.
 const CATEGORY_BY_SLUG: Record<string, Exclude<Category, "all">> = {
@@ -50,19 +51,42 @@ const CATEGORY_LABELS: Record<Exclude<Category, "all">, string> = {
   laadpalen: "Laadpalen",
 };
 
+// Brand mapping per product handle. Nieuwe merken hier toevoegen.
+const BRAND_BY_SLUG: Record<string, Exclude<Brand, "all">> = {
+  "marstek-venus-a": "marstek",
+  "marstek-venus-ev3": "marstek",
+  "marstek-venus-ev35": "marstek",
+  "solplanet-phase-1-batterij": "solplanet",
+  "solplanet-phase-3-batterij": "solplanet",
+  "solplanet-omvormers": "solplanet",
+  "zonnepanelen": "solplanet",
+  "laadpalen": "solplanet",
+  "container-batterij-zakelijk": "alterion",
+};
+
+const BRAND_LABELS: Record<Exclude<Brand, "all">, string> = {
+  marstek: "Marstek",
+  solplanet: "Solplanet",
+  hyxipower: "Hyxipower",
+  alterion: "Alterion",
+};
+
 export default function WebshopFilters({ products }: { products: WebshopProduct[] }) {
   const [category, setCategory] = useState<Category>("all");
   const [segment, setSegment] = useState<Segment>("all");
+  const [brand, setBrand] = useState<Brand>("all");
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const productCat = CATEGORY_BY_SLUG[p.slug];
       const productSeg = SEGMENT_BY_SLUG[p.slug];
+      const productBrand = BRAND_BY_SLUG[p.slug];
       if (category !== "all" && productCat !== category) return false;
       if (segment !== "all" && productSeg !== segment) return false;
+      if (brand !== "all" && productBrand !== brand) return false;
       return true;
     });
-  }, [products, category, segment]);
+  }, [products, category, segment, brand]);
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
@@ -99,6 +123,21 @@ export default function WebshopFilters({ products }: { products: WebshopProduct[
                   </label>
                 ))}
               </div>
+            </div>
+            <div className="pt-4 border-t border-slate-100">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Merk</p>
+              <select
+                value={brand}
+                onChange={(e) => setBrand(e.target.value as Brand)}
+                className="w-full p-2 rounded-md border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="all">Alle merken</option>
+                {(Object.keys(BRAND_LABELS) as Array<keyof typeof BRAND_LABELS>).map((b) => (
+                  <option key={b} value={b}>
+                    {BRAND_LABELS[b]}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="pt-4 border-t border-slate-100">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Type</p>
