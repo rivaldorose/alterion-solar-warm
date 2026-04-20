@@ -43,9 +43,9 @@ export default function HomePage() {
           <div className="relative">
             <div className="rounded-xl overflow-hidden shadow-2xl">
               <Image
-                alt="Modern home battery system"
+                alt="Alterion thuisbatterij in een garage naast een elektrische auto"
                 className="w-full aspect-square object-cover"
-                src="/hero-home.jpg"
+                src="/thuisbatterij-garage.jpg"
                 width={600}
                 height={600}
               />
@@ -139,9 +139,9 @@ export default function HomePage() {
           </div>
           <div className="order-1 lg:order-2 rounded-xl overflow-hidden shadow-xl">
             <Image
-              alt="Warmtepomp systeem"
+              alt="Alterion thuisbatterij gemonteerd aan de buitenmuur van een woning"
               className="w-full aspect-[4/3] object-cover"
-              src="/warmte pomp.jpg"
+              src="/thuisbatterij-aan-huis.jpg"
               width={800}
               height={600}
             />
