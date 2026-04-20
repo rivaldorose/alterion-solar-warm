@@ -15,6 +15,18 @@ const productDetails: Record<string, { capacity: string; power: string; weight: 
 };
 
 const fallbackData: Record<string, { title: string; description: string; price: number; image: string }> = {
+  "hyxipower-1fase": {
+    title: "Hyxipower 1-fase omvormer",
+    description: "1-fase hybride omvormer voor particuliere installaties. Geschikt voor zonnepanelen én thuisbatterijen. Meer info op https://www.hyxipower.com/nl.",
+    price: 0,
+    image: "/products/hyxipower-1fase.png",
+  },
+  "hyxipower-3fase": {
+    title: "Hyxipower 3-fase omvormer",
+    description: "3-fase hybride omvormer voor zakelijke installaties en grotere woningen. Hoog vermogen, robuuste bouw. Meer info op https://www.hyxipower.com/nl.",
+    price: 0,
+    image: "/products/hyxipower-3fase.png",
+  },
   "marstek-venus-a": {
     title: "Marstek Venus A",
     description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer en 4 MPPT-trackers. LiFePO4 technologie, 6000+ cycli, 10 jaar garantie.",

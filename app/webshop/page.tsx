@@ -10,6 +10,26 @@ export const metadata = {
 
 const fallbackProducts: WebshopProduct[] = [
   {
+    slug: "hyxipower-1fase",
+    name: "Hyxipower 1-fase omvormer",
+    description: "1-fase hybride omvormer voor particuliere installaties. Compatible met zonnepanelen en batterij.",
+    price: 0,
+    priceDisplay: "Op aanvraag",
+    badge: "Nieuw",
+    badgeStyle: "bg-primary text-secondary",
+    image: "/products/hyxipower-1fase.png",
+  },
+  {
+    slug: "hyxipower-3fase",
+    name: "Hyxipower 3-fase omvormer",
+    description: "3-fase hybride omvormer voor zakelijke installaties en grotere woningen. Hoog vermogen.",
+    price: 0,
+    priceDisplay: "Op aanvraag",
+    badge: "Zakelijk",
+    badgeStyle: "bg-secondary text-primary border border-primary",
+    image: "/products/hyxipower-3fase.png",
+  },
+  {
     slug: "marstek-venus-a",
     name: "Marstek Venus A",
     description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer. LiFePO4, 10 jaar garantie.",
@@ -64,9 +84,17 @@ function mapMedusaProduct(product: MedusaProduct): WebshopProduct {
 
 export default async function WebshopPage() {
   const medusaProducts = await getProducts();
-  const products: WebshopProduct[] = medusaProducts.length > 0
-    ? medusaProducts.map(mapMedusaProduct)
-    : fallbackProducts;
+  const mapped = medusaProducts.map(mapMedusaProduct);
+
+  // Hyxipower items staan (nog) niet in MedusaJS — voeg ze altijd toe zolang
+  // ze niet als handle in de Medusa-response staan.
+  const mappedSlugs = new Set(mapped.map((p) => p.slug));
+  const hyxiExtras = fallbackProducts.filter(
+    (p) => p.slug.startsWith("hyxipower-") && !mappedSlugs.has(p.slug)
+  );
+
+  const products: WebshopProduct[] =
+    mapped.length > 0 ? [...hyxiExtras, ...mapped] : fallbackProducts;
 
   return (
     <div className="max-w-[1280px] mx-auto w-full px-4 md:px-10 py-8">

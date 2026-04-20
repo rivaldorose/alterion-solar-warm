@@ -117,6 +117,8 @@ const LOCAL_PRODUCT_IMAGES: Record<string, string> = {
   "container-batterij-zakelijk": "/products/container-batterij-zakelijk.png",
   "zonnepanelen": "/products/zonnepanelen.png",
   "laadpalen": "/products/laadpalen.png",
+  "hyxipower-1fase": "/products/hyxipower-1fase.png",
+  "hyxipower-3fase": "/products/hyxipower-3fase.png",
 };
 
 export function getProductImage(

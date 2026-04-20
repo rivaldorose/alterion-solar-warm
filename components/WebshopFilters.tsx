@@ -30,6 +30,8 @@ const CATEGORY_BY_SLUG: Record<string, Exclude<Category, "all">> = {
   "solplanet-omvormers": "omvormers",
   "zonnepanelen": "zonnepanelen",
   "laadpalen": "laadpalen",
+  "hyxipower-1fase": "omvormers",
+  "hyxipower-3fase": "omvormers",
 };
 
 const SEGMENT_BY_SLUG: Record<string, Exclude<Segment, "all">> = {
@@ -42,6 +44,8 @@ const SEGMENT_BY_SLUG: Record<string, Exclude<Segment, "all">> = {
   "solplanet-omvormers": "particulier",
   "zonnepanelen": "particulier",
   "laadpalen": "particulier",
+  "hyxipower-1fase": "particulier",
+  "hyxipower-3fase": "zakelijk",
 };
 
 const CATEGORY_LABELS: Record<Exclude<Category, "all">, string> = {
@@ -62,6 +66,8 @@ const BRAND_BY_SLUG: Record<string, Exclude<Brand, "all">> = {
   "zonnepanelen": "solplanet",
   "laadpalen": "solplanet",
   "container-batterij-zakelijk": "alterion",
+  "hyxipower-1fase": "hyxipower",
+  "hyxipower-3fase": "hyxipower",
 };
 
 const BRAND_LABELS: Record<Exclude<Brand, "all">, string> = {
