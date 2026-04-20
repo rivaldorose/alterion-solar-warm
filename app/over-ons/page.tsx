@@ -127,9 +127,8 @@ export default function OverOnsPage() {
       {/* CTA */}
       <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-secondary mb-6">Ben jij ook klaar voor duurzame energie?</h2>
-          <p className="text-lg text-slate-600 mb-10">
-            Kies voor de duurzame oplossingen van Alterion en profiteer van lagere energiekosten, hoogwaardige installaties en persoonlijke begeleiding van A tot Z. Neem vandaag nog contact op voor een vrijblijvend adviesgesprek.
+          <p className="text-lg text-slate-600 mb-8">
+            Klaar voor duurzame energie? Wij helpen u graag verder.
           </p>
           <Link
             href="/contact"
