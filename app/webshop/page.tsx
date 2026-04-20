@@ -169,13 +169,13 @@ export default async function WebshopPage() {
                     ) : (
                       <>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-secondary text-lg font-bold">Prijs op aanvraag</span>
+                          <span className="text-slate-500 text-sm font-semibold uppercase tracking-wide">Prijs op aanvraag</span>
                         </div>
                         <Link
                           href={`/contact?product=${encodeURIComponent(product.name)}`}
-                          className="w-full bg-secondary text-white font-bold py-3 px-6 rounded-lg text-center hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                          className="w-full bg-primary text-secondary font-bold py-3 px-6 rounded-lg text-center hover:brightness-105 transition-all flex items-center justify-center gap-2 shadow-sm shadow-primary/20"
                         >
-                          <span className="material-symbols-outlined text-lg">mail</span>
+                          <span className="material-symbols-outlined text-lg">request_quote</span>
                           Offerte aanvragen
                         </Link>
                       </>
