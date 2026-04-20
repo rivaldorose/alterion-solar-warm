@@ -21,7 +21,8 @@ export default function HomePage() {
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <h1 className="text-5xl lg:text-7xl font-black text-secondary leading-[1.1] tracking-tight">
+            <p className="text-primary font-bold uppercase tracking-widest text-sm">Duurzame energie</p>
+            <h1 className="font-poppins text-5xl lg:text-7xl font-extrabold text-secondary leading-[1.05] tracking-tight">
               Thuisbatterijen die werken
             </h1>
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
@@ -35,6 +36,25 @@ export default function HomePage() {
                 <BrandIcon size={20} />
                 Bereken uw voordeel
               </Link>
+            </div>
+
+            {/* Key feature cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4">
+              <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+                <span className="material-symbols-outlined text-primary text-2xl mb-2 block">bolt</span>
+                <p className="text-sm font-bold text-secondary">Snel geplaatst</p>
+                <p className="text-xs text-slate-600 mt-1">Binnen één werkdag klaar</p>
+              </div>
+              <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-4">
+                <span className="material-symbols-outlined text-secondary text-2xl mb-2 block">verified</span>
+                <p className="text-sm font-bold text-secondary">10 jaar garantie</p>
+                <p className="text-xs text-slate-600 mt-1">Op elk systeem</p>
+              </div>
+              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+                <span className="material-symbols-outlined text-emerald-600 text-2xl mb-2 block">savings</span>
+                <p className="text-sm font-bold text-secondary">€€€ besparing</p>
+                <p className="text-xs text-slate-600 mt-1">Direct op uw rekening</p>
+              </div>
             </div>
           </div>
           <div className="relative">
