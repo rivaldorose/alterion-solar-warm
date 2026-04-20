@@ -209,6 +209,21 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Google Maps */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto">
+          <iframe
+            src="https://maps.google.com/maps?q=Keurmeesterstraat%2053%2C%201187ZX%20Amstelveen&t=m&z=16&output=embed&iwloc=near"
+            width="100%"
+            height="420"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Locatie Alterion BV, Keurmeesterstraat 53, Amstelveen"
+          />
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6">

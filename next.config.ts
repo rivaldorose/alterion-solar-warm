@@ -7,7 +7,7 @@ const ContentSecurityPolicy = [
   "font-src 'self' data: https://fonts.gstatic.com",
   "img-src 'self' data: blob: https://lh3.googleusercontent.com https://thuisbatterij.nl https://solplanet.net https://www.google-analytics.com",
   "connect-src 'self' https://alterion-medusa-backend.onrender.com https://www.google-analytics.com https://accounts.zoho.eu https://www.zohoapis.eu",
-  "frame-src 'self' https://www.mollie.com https://www.google.com",
+  "frame-src 'self' https://www.mollie.com https://www.google.com https://maps.google.com https://www.google.com/maps/",
   "frame-ancestors 'none'",
   "form-action 'self' https://www.mollie.com",
   "base-uri 'self'",
