@@ -9,10 +9,10 @@ function formatDutchCurrency(amount: number): string {
 }
 
 export default function DienstenCalculator() {
-  const [yearlyUsage, setYearlyUsage] = useState(4500);
-  const [solarPanels, setSolarPanels] = useState(12);
-  const [batteryCapacity, setBatteryCapacity] = useState(10);
-  const [dynamicContract, setDynamicContract] = useState(true);
+  const [yearlyUsage, setYearlyUsage] = useState(0);
+  const [solarPanels, setSolarPanels] = useState(0);
+  const [batteryCapacity, setBatteryCapacity] = useState(0);
+  const [dynamicContract, setDynamicContract] = useState(false);
 
   // Calculation
   const solarProduction = solarPanels * 400; // kWh/year
@@ -26,7 +26,7 @@ export default function DienstenCalculator() {
   const co2Reduction = Math.round(selfConsumption * 0.4); // kg CO2 per kWh
   const independence = Math.min(Math.round((selfConsumption / Math.max(yearlyUsage, 1)) * 100), 99);
 
-  const sliderPercent = ((batteryCapacity - 2.5) / (20 - 2.5)) * 100;
+  const sliderPercent = Math.max(0, Math.min(100, ((batteryCapacity - 2.5) / (20 - 2.5)) * 100));
 
   return (
     <div className="bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
