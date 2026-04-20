@@ -15,7 +15,7 @@ export default function OverOnsPage() {
           <div className="space-y-6">
             <p className="text-primary font-bold uppercase tracking-widest text-sm">Over Alterion</p>
             <h1 className="text-4xl lg:text-6xl font-black text-secondary leading-[1.1] tracking-tight">
-              Alterion: Uw specialist in zonnepanelen en thuisbatterijen
+              Over Alterion
             </h1>
             <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
               Sinds 2020 is Alterion jouw betrouwbare partner in duurzame energie. Wij leveren hoogwaardige zonne-energieoplossingen die zowel het milieu als uw energierekening aanzienlijk verlagen.
@@ -93,46 +93,6 @@ export default function OverOnsPage() {
                 Van adviesgesprek tot installatie en nazorg — u heeft altijd een vast aanspreekpunt.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cijfers */}
-      <section className="py-24 bg-secondary text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 text-center">
-            <div>
-              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">5,000</span>
-              <p className="text-slate-400 font-medium">Tevreden klanten</p>
-            </div>
-            <div>
-              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">8.7</span>
-              <p className="text-slate-400 font-medium">Klanttevredenheid</p>
-            </div>
-            <div>
-              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">1,000</span>
-              <p className="text-slate-400 font-medium">Thuisbatterijen</p>
-            </div>
-            <div>
-              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">2,500</span>
-              <p className="text-slate-400 font-medium">Besparing euro&apos;s p/j</p>
-            </div>
-            <div>
-              <span className="font-poppins text-4xl md:text-5xl font-black text-primary mb-2 block">2,250,305</span>
-              <p className="text-slate-400 font-medium">in kWH</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Duurzaamheid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-secondary">Voor de toekomstige generatie</h2>
-            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
-              Wij geloven dat de keuze voor duurzame energie een investering is in de toekomst van onze kinderen en kleinkinderen. Door vandaag te kiezen voor zonnepanelen en thuisbatterijen, dragen wij samen bij aan een schonere wereld voor de generaties na ons.
-            </p>
           </div>
         </div>
       </section>
