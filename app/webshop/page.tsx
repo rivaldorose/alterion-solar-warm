@@ -71,9 +71,14 @@ export default async function WebshopPage() {
 
   return (
     <div className="max-w-[1280px] mx-auto w-full px-4 md:px-10 py-8">
-      <div className="flex flex-col gap-4 mb-8">
-        <h1 className="text-secondary text-4xl md:text-5xl font-black tracking-tight">Onze Producten</h1>
-        <p className="text-slate-600 text-lg max-w-2xl">Ontdek de perfecte thuisbatterij voor uw energiebehoeften. Duurzaam, effici&euml;nt en klaar voor de toekomst.</p>
+      <div className="flex flex-col gap-3 mb-10">
+        <p className="text-primary font-bold uppercase tracking-widest text-sm">Webshop</p>
+        <h1 className="font-poppins text-secondary text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+          Onze producten
+        </h1>
+        <p className="text-slate-600 text-lg max-w-2xl leading-relaxed">
+          Ontdek de perfecte thuisbatterij voor uw energiebehoeften. Duurzaam, effici&euml;nt en klaar voor de toekomst.
+        </p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
