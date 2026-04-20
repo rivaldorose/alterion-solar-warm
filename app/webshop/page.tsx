@@ -128,15 +128,15 @@ export default async function WebshopPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             {products.map((product) => (
               <div
                 key={product.slug}
                 className="flex flex-col bg-white rounded-lg shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 group"
               >
                 <Link href={`/webshop/${product.slug}`}>
-                  <div className="relative h-64 w-full bg-slate-100 flex items-center justify-center p-8 overflow-hidden">
-                    <div className="absolute top-4 left-4 z-10">
+                  <div className="relative h-52 w-full bg-slate-100 flex items-center justify-center p-6 overflow-hidden">
+                    <div className="absolute top-3 left-3 z-10">
                       <span className={`${product.badgeStyle} text-[10px] font-black uppercase px-2 py-1 rounded`}>{product.badge}</span>
                     </div>
                     <div
@@ -145,14 +145,14 @@ export default async function WebshopPage() {
                     ></div>
                   </div>
                 </Link>
-                <div className="p-6 flex flex-col flex-1">
+                <div className="p-5 flex flex-col flex-1">
                   <Link href={`/webshop/${product.slug}`}>
-                    <div className="mb-4">
-                      <h3 className="text-secondary text-xl font-bold mb-1">{product.name}</h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">{product.description}</p>
+                    <div className="mb-3">
+                      <h3 className="text-secondary text-lg font-bold mb-1">{product.name}</h3>
+                      <p className="text-slate-500 text-sm leading-snug">{product.description}</p>
                     </div>
                   </Link>
-                  <div className="mt-auto pt-4 border-t border-slate-50 flex flex-col gap-4">
+                  <div className="mt-auto pt-3 border-t border-slate-50 flex flex-col gap-3">
                     {product.price > 0 ? (
                       <>
                         <div className="flex items-baseline gap-2">
