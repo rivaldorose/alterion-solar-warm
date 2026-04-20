@@ -57,7 +57,7 @@ export default function HomePage() {
         <div className="relative">
           <div className="flex animate-scroll gap-16 w-max">
             {[...partners, ...partners].map((partner, i) => (
-              <div key={i} className="flex items-center justify-center h-12 min-w-[120px] grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+              <div key={i} className="flex items-center justify-center h-12 min-w-[120px] opacity-90 hover:opacity-100 transition-all">
                 <Image
                   src={partner.src}
                   alt={partner.name}
