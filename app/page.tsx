@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Calculator from "@/components/Calculator";
+import BrandIcon from "@/components/BrandIcon";
 
 const partners = [
   { name: "Alliander", src: "/partners/alliander.png" },
@@ -29,8 +30,9 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/diensten"
-                className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all text-center"
+                className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all text-center inline-flex items-center justify-center gap-2"
               >
+                <BrandIcon size={20} />
                 Bereken uw voordeel
               </Link>
             </div>
@@ -161,7 +163,8 @@ export default function HomePage() {
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
               Onze eigen gecertificeerde installateurs regelen alles van A tot Z. Geen onderaannemers, geen gedoe. We laten uw huis net zo schoon achter als we het vonden.
             </p>
-            <Link href="/over-ons" className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all inline-block">
+            <Link href="/over-ons" className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all inline-flex items-center gap-2">
+              <BrandIcon size={20} />
               Ontdek onze werkwijze
             </Link>
           </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BrandIcon from "@/components/BrandIcon";
 
 export const metadata = {
   title: "Over Ons – Alterion",
@@ -144,8 +145,9 @@ export default function OverOnsPage() {
           </p>
           <Link
             href="/contact"
-            className="bg-primary text-secondary font-bold px-10 py-5 rounded-lg text-lg hover:brightness-105 transition-all inline-block shadow-lg shadow-primary/20"
+            className="bg-primary text-secondary font-bold px-10 py-5 rounded-lg text-lg hover:brightness-105 transition-all inline-flex items-center gap-2 shadow-lg shadow-primary/20"
           >
+            <BrandIcon size={22} />
             Vraag advies aan
           </Link>
         </div>
