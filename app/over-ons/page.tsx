@@ -101,26 +101,38 @@ export default function OverOnsPage() {
       <section className="py-24 bg-neutral-gray">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-secondary">Onze Werkwijze</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-secondary tracking-tight">Onze werkwijze</h2>
             <p className="text-slate-600 mt-4 max-w-2xl mx-auto">In 4 stappen naar uw duurzame installatie</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
+          {(() => {
+            const steps = [
               { step: "1", icon: "chat", title: "Adviesgesprek", desc: "Gratis en vrijblijvend bespreken we uw situatie en wensen." },
               { step: "2", icon: "calculate", title: "Offerte op maat", desc: "U ontvangt een persoonlijke offerte met exacte besparingen." },
               { step: "3", icon: "construction", title: "Installatie", desc: "Onze vakmensen installeren alles binnen één werkdag." },
               { step: "4", icon: "monitoring", title: "Monitoring", desc: "Via de app heeft u realtime inzicht in uw besparing." },
-            ].map((item) => (
-              <div key={item.step} className="relative bg-white p-8 rounded-xl">
-                <span className="absolute -top-4 left-6 bg-primary text-secondary font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">
-                  {item.step}
-                </span>
-                <span className="material-symbols-outlined text-primary text-3xl mb-4 block mt-2">{item.icon}</span>
-                <h3 className="text-lg font-bold text-secondary mb-2">{item.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+            ];
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] gap-y-8 md:gap-x-4 items-stretch">
+                {steps.map((item, i) => (
+                  <div key={item.step} className="contents">
+                    <div className="relative bg-white p-8 rounded-xl">
+                      <span className="absolute -top-4 left-6 bg-primary text-secondary font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center">
+                        {item.step}
+                      </span>
+                      <span className="material-symbols-outlined text-primary text-3xl mb-4 block mt-2">{item.icon}</span>
+                      <h3 className="text-base font-semibold text-secondary mb-2">{item.title}</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                    {i < steps.length - 1 && (
+                      <div className="hidden md:flex items-center justify-center text-primary" aria-hidden="true">
+                        <span className="material-symbols-outlined text-3xl">chevron_right</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            );
+          })()}
         </div>
       </section>
 
