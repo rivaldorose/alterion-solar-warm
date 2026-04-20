@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
-import { getProducts, getProductPrice, formatPrice, MedusaProduct } from "@/lib/medusa";
+import { getProducts, getProductPrice, formatPrice, getProductImage, MedusaProduct } from "@/lib/medusa";
 
 export const revalidate = 300; // revalidate every 5 minutes
 
@@ -18,7 +18,7 @@ const fallbackProducts = [
     priceDisplay: "€3.750",
     badge: "Nieuw",
     badgeStyle: "bg-primary text-secondary",
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/09/Marstek-Venus-A-plug-in-thuisbatterij.png",
+    image: "/products/marstek-venus-a.png",
   },
   {
     slug: "marstek-venus-ev3",
@@ -28,7 +28,7 @@ const fallbackProducts = [
     priceDisplay: "€1.299",
     badge: "Populairste",
     badgeStyle: "bg-secondary text-primary border border-primary",
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
+    image: "/products/marstek-venus-ev3.png",
   },
   {
     slug: "marstek-venus-ev35",
@@ -38,7 +38,7 @@ const fallbackProducts = [
     priceDisplay: "€3.499",
     badge: "Premium",
     badgeStyle: "bg-primary text-secondary",
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
+    image: "/products/marstek-venus-ev35.png",
   },
 ];
 
@@ -59,7 +59,7 @@ function mapMedusaProduct(product: MedusaProduct) {
     priceDisplay: formatPrice(price),
     badge: badge.text,
     badgeStyle: badge.style,
-    image: product.images?.[0]?.url || "",
+    image: getProductImage(product.handle, product.images?.[0]?.url),
   };
 }
 

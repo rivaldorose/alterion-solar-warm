@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
-import { getProductByHandle, getProductPrice, formatPrice } from "@/lib/medusa";
+import { getProductByHandle, getProductPrice, formatPrice, getProductImage } from "@/lib/medusa";
 
 export const revalidate = 300; // revalidate every 5 minutes
 
@@ -19,19 +19,19 @@ const fallbackData: Record<string, { title: string; description: string; price: 
     title: "Marstek Venus A",
     description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer en 4 MPPT-trackers. LiFePO4 technologie, 6000+ cycli, 10 jaar garantie.",
     price: 3750,
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/09/Marstek-Venus-A-plug-in-thuisbatterij.png",
+    image: "/products/marstek-venus-a.png",
   },
   "marstek-venus-ev3": {
     title: "Marstek Venus EV3",
     description: "Plug & Play thuisbatterij met 5.12 kWh opslag en 2.5 kW omvormer. LiFePO4, schaalbaar tot 15.36 kWh. Incl. P1 meter.",
     price: 1299,
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
+    image: "/products/marstek-venus-ev3.png",
   },
   "marstek-venus-ev35": {
     title: "Marstek Venus EV3.5",
     description: "Uitgebreide Plug & Play thuisbatterij met 15.36 kWh opslag en 7.5 kW vermogen. 3 modules, LiFePO4, maximale onafhankelijkheid.",
     price: 3499,
-    image: "https://thuisbatterij.nl/wp-content/uploads/2025/07/Marstek-Venus-E-V3-gen-3.0-thuisbatterij.png",
+    image: "/products/marstek-venus-ev35.png",
   },
 };
 
@@ -43,7 +43,10 @@ export default async function ProductDetailPage({ params }: Props) {
   const title = medusaProduct?.title || fallbackData[slug]?.title || "Product";
   const description = medusaProduct?.description || fallbackData[slug]?.description || "";
   const price = medusaProduct ? getProductPrice(medusaProduct) : (fallbackData[slug]?.price || 0);
-  const image = medusaProduct?.images?.[0]?.url || fallbackData[slug]?.image || "";
+  const image = getProductImage(
+    slug,
+    medusaProduct?.images?.[0]?.url || fallbackData[slug]?.image
+  );
   const specs = productDetails[slug] || { capacity: "10 kWh", power: "5.0 kW", weight: "94 kg" };
 
   return (

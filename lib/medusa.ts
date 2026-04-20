@@ -104,6 +104,31 @@ export function formatPrice(amount: number): string {
   }).format(amount);
 }
 
+// Local product images live under /public/products/<handle>.png
+// We prefer the local file so product pages keep working even if an
+// external supplier CDN blocks hotlinks or changes URLs.
+const LOCAL_PRODUCT_IMAGES: Record<string, string> = {
+  "marstek-venus-a": "/products/marstek-venus-a.png",
+  "marstek-venus-ev3": "/products/marstek-venus-ev3.png",
+  "marstek-venus-ev35": "/products/marstek-venus-ev35.png",
+  "solplanet-phase-1-batterij": "/products/solplanet-phase-1-batterij.png",
+  "solplanet-phase-3-batterij": "/products/solplanet-phase-3-batterij.png",
+  "solplanet-omvormers": "/products/solplanet-omvormers.png",
+  "container-batterij-zakelijk": "/products/container-batterij-zakelijk.png",
+  "zonnepanelen": "/products/zonnepanelen.png",
+  "laadpalen": "/products/laadpalen.png",
+};
+
+export function getProductImage(
+  handle: string | undefined,
+  remoteFallback?: string
+): string {
+  if (handle && LOCAL_PRODUCT_IMAGES[handle]) {
+    return LOCAL_PRODUCT_IMAGES[handle];
+  }
+  return remoteFallback || "";
+}
+
 // --- Cart / Order helpers (server-side only, used in API routes) ---
 
 async function medusaStoreRequest<T>(
