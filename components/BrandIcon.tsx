@@ -10,7 +10,7 @@ interface BrandIconProps {
 export default function BrandIcon({ size = 20, className = "" }: BrandIconProps) {
   return (
     <Image
-      src="/favicon-sun.png"
+      src="/favicon-alterion-icon.png"
       alt=""
       width={size}
       height={size}

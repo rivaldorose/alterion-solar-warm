@@ -39,25 +39,6 @@ export default function HomePage() {
                 Bereken uw voordeel
               </Link>
             </div>
-
-            {/* Key feature cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4">
-              <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
-                <span className="material-symbols-outlined text-primary text-2xl mb-2 block">bolt</span>
-                <p className="text-sm font-bold text-secondary">Snel geplaatst</p>
-                <p className="text-xs text-slate-600 mt-1">Binnen één werkdag klaar</p>
-              </div>
-              <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-4">
-                <span className="material-symbols-outlined text-secondary text-2xl mb-2 block">verified</span>
-                <p className="text-sm font-bold text-secondary">10 jaar garantie</p>
-                <p className="text-xs text-slate-600 mt-1">Op elk systeem</p>
-              </div>
-              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
-                <span className="material-symbols-outlined text-emerald-600 text-2xl mb-2 block">savings</span>
-                <p className="text-sm font-bold text-secondary">€€€ besparing</p>
-                <p className="text-xs text-slate-600 mt-1">Direct op uw rekening</p>
-              </div>
-            </div>
           </div>
           <div className="relative">
             <div className="rounded-xl overflow-hidden shadow-2xl">
