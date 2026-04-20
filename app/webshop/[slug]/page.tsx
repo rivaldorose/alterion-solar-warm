@@ -87,7 +87,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
             ) : (
               <div className="flex items-baseline gap-4 mb-4">
-                <span className="text-2xl font-bold text-secondary">Prijs op aanvraag</span>
+                <span className="text-base font-semibold uppercase tracking-wide text-slate-500">Prijs op aanvraag</span>
               </div>
             )}
             <p className="text-slate-600 leading-relaxed mb-6">{description}</p>
@@ -128,9 +128,9 @@ export default async function ProductDetailPage({ params }: Props) {
           ) : (
             <Link
               href={`/contact?product=${encodeURIComponent(title)}`}
-              className="w-full bg-secondary text-white font-bold py-4 px-6 rounded-lg text-center text-lg hover:brightness-110 transition-all flex items-center justify-center gap-2"
+              className="w-full bg-primary text-secondary font-bold py-4 px-6 rounded-lg text-center text-lg hover:brightness-105 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
             >
-              <span className="material-symbols-outlined">mail</span>
+              <span className="material-symbols-outlined">request_quote</span>
               Offerte aanvragen
             </Link>
           )}
