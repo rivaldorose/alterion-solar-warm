@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { certificaten } from "@/lib/certificaten";
 
 export default function Footer() {
   return (
@@ -65,9 +66,9 @@ export default function Footer() {
         <div className="pb-12 mb-12 border-b border-slate-800">
           <h4 className="text-white font-bold mb-6 text-center">Certificaten</h4>
           <div className="flex flex-wrap justify-center gap-4">
-            {["NEN 1010", "NEN 3140", "VCA", "InstallQ", "Techniek Nederland", "ELBHO"].map((cert) => (
-              <div key={cert} className="bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg border border-white/10">
-                <span className="text-white text-sm font-semibold">{cert}</span>
+            {certificaten.map((cert) => (
+              <div key={cert.naam} className="bg-white/10 backdrop-blur-sm px-5 py-3 rounded-lg border border-white/10">
+                <span className="text-white text-sm font-semibold">{cert.naam}</span>
               </div>
             ))}
           </div>

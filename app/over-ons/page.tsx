@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BrandIcon from "@/components/BrandIcon";
+import CertificatenSection from "@/components/CertificatenSection";
 
 export const metadata = {
   title: "Over Ons – Alterion",
@@ -97,6 +98,8 @@ export default function OverOnsPage() {
           </div>
         </div>
       </section>
+
+      <CertificatenSection />
 
       {/* Werkwijze */}
       <section className="py-24 bg-neutral-gray">
