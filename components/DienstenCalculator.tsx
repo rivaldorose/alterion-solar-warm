@@ -14,17 +14,44 @@ export default function DienstenCalculator() {
   const [batteryCapacity, setBatteryCapacity] = useState(0);
   const [dynamicContract, setDynamicContract] = useState(false);
 
-  // Calculation
-  const solarProduction = solarPanels * 400; // kWh/year
-  const batteryFactor = Math.min(batteryCapacity / 10, 1.5); // scale by battery size
-  const selfConsumption = solarProduction * 0.85 * batteryFactor;
-  const electricityPrice = 0.40;
-  const dynamicBonus = dynamicContract ? 1.15 : 1.0;
-  const savings = selfConsumption * electricityPrice * dynamicBonus;
-  const investmentCost = 4500 + (batteryCapacity - 5) * 300;
-  const payback = savings > 0 ? investmentCost / savings : 0;
-  const co2Reduction = Math.round(selfConsumption * 0.4); // kg CO2 per kWh
-  const independence = Math.min(Math.round((selfConsumption / Math.max(yearlyUsage, 1)) * 100), 99);
+  // --- Calculation ----------------------------------------------------------
+  // Three savings streams that work independently so edge cases (only battery,
+  // only panels, both) all produce sensible numbers:
+  //   1. selfConsumption  — zonne-opwek die je zelf gebruikt i.p.v. terugleveren
+  //   2. arbitrage        — batterij laden op daluren, ontladen op piek (dynamisch contract)
+  //   3. independence     — % eigen energie vs. jaarverbruik (capped 99)
+  const ELECTRICITY_PRICE = 0.40;                 // €/kWh gemiddeld piek
+  const PANEL_YIELD = 400;                        // kWh per paneel per jaar
+  const PANEL_SELF_USE = 0.35;                    // % direct zelf gebruikt zonder batterij
+  const BATTERY_CYCLES = 300;                     // cycli per jaar (laden/ontladen)
+  const ARBITRAGE_SPREAD = 0.15;                  // €/kWh verschil dal ↔ piek
+
+  const solarProduction = solarPanels * PANEL_YIELD;
+
+  // Zonder batterij gebruik je slechts een deel zelf; batterij verhoogt dat tot ~85%.
+  const batteryBoost = batteryCapacity > 0 ? Math.min(1, 0.35 + batteryCapacity * 0.05) : 0;
+  const selfUseFraction = batteryCapacity > 0 ? batteryBoost : PANEL_SELF_USE;
+  const selfConsumption = solarProduction * selfUseFraction;
+  const solarSavings = selfConsumption * ELECTRICITY_PRICE;
+
+  // Arbitrage alleen als er een batterij is en je een dynamisch contract hebt.
+  // Scales met batterij-capaciteit (max 1 cycle per dag).
+  const arbitrageSavings =
+    batteryCapacity > 0 && dynamicContract
+      ? batteryCapacity * BATTERY_CYCLES * ARBITRAGE_SPREAD
+      : 0;
+
+  const savings = solarSavings + arbitrageSavings;
+
+  // Investering: altijd minimaal 0 (geen negatieve kosten bij 0 batterij).
+  const investmentCost = Math.max(0, batteryCapacity * 700 + solarPanels * 300);
+  const payback = savings > 0 && investmentCost > 0 ? investmentCost / savings : 0;
+
+  const co2Reduction = Math.round(selfConsumption * 0.4);
+  const independence =
+    yearlyUsage > 0
+      ? Math.min(Math.round(((selfConsumption + arbitrageSavings / ELECTRICITY_PRICE) / yearlyUsage) * 100), 99)
+      : 0;
 
   const sliderPercent = Math.max(0, Math.min(100, ((batteryCapacity - 2.5) / (20 - 2.5)) * 100));
 
