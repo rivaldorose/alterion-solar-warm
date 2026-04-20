@@ -60,8 +60,8 @@ export default function OverOnsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-secondary">Eerlijk over duurzaamheid en kwaliteit</h2>
-            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold text-secondary tracking-tight">Eerlijk over duurzaamheid en kwaliteit</h2>
+            <p className="text-slate-600 mt-4 max-w-2xl mx-auto leading-relaxed">
               Kies voor Alterion en ervaar eerlijke, betrouwbare en kwalitatieve service. Wij bieden complete ontzorging, van advies tot installatie van thuisbatterijen, zonnepanelen en laadpalen.
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function OverOnsPage() {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-primary text-3xl">engineering</span>
               </div>
-              <h3 className="text-xl font-bold text-secondary mb-3">Eigen Installateurs</h3>
+              <h3 className="text-lg font-semibold text-secondary mb-3">Eigen Installateurs</h3>
               <p className="text-slate-600 leading-relaxed">
                 Geen onderaannemers. Onze eigen gecertificeerde vakmensen installeren en onderhouden elk systeem.
               </p>
@@ -79,7 +79,7 @@ export default function OverOnsPage() {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-primary text-3xl">verified</span>
               </div>
-              <h3 className="text-xl font-bold text-secondary mb-3">Kwaliteitsgarantie</h3>
+              <h3 className="text-lg font-semibold text-secondary mb-3">Kwaliteitsgarantie</h3>
               <p className="text-slate-600 leading-relaxed">
                 Wij werken uitsluitend met hoogwaardige producten en bieden lange garanties op al onze installaties.
               </p>
@@ -88,7 +88,7 @@ export default function OverOnsPage() {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-primary text-3xl">handshake</span>
               </div>
-              <h3 className="text-xl font-bold text-secondary mb-3">Persoonlijk Contact</h3>
+              <h3 className="text-lg font-semibold text-secondary mb-3">Persoonlijk Contact</h3>
               <p className="text-slate-600 leading-relaxed">
                 Van adviesgesprek tot installatie en nazorg — u heeft altijd een vast aanspreekpunt.
               </p>
