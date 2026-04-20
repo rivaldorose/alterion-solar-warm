@@ -26,6 +26,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-poppins);
 }
 
+/* Soften the heaviest font weights project-wide so headings feel lighter and
+   more modern. Tailwind `font-black` (900) becomes 800; body `font-bold` (700)
+   keeps impact where needed via the utility class. Refined per client feedback. */
+.font-black {
+  font-weight: 800 !important;
+}
+
 /* Material icon base styles. The `:not(.loaded)` fallback hides the raw ligature
    label (e.g. "home", "shopping_cart") until the actual glyph font has rendered,
    so the icon name never flashes in the UI if the font is slow or blocked. */
