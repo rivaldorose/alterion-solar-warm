@@ -217,7 +217,7 @@ export default function ContactPage() {
             {[
               {
                 q: "Hoe snel kan mijn thuisbatterij geinstalleerd worden?",
-                a: "Na goedkeuring van uw offerte plannen wij de installatie doorgaans binnen 14 dagen in. De installatie zelf duurt een werkdag."
+                a: "Na goedkeuring van uw offerte plannen wij de installatie in binnen 40 werkdagen. De installatie zelf duurt doorgaans één werkdag."
               },
               {
                 q: "Is een offerte aanvragen gratis en vrijblijvend?",
