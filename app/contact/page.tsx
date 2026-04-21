@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FAQSection from "@/components/FAQSection";
 
 export default function ContactPage() {
@@ -12,9 +12,24 @@ export default function ContactPage() {
     bericht: "",
     website: "",
   });
+  const [productContext, setProductContext] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+
+  // Detecteer ?product=... uit URL (komt vanuit webshop "Offerte aanvragen" knop)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product");
+    if (product) {
+      setProductContext(product);
+      setFormData((prev) => ({
+        ...prev,
+        onderwerp: `Offerte aanvraag: ${product}`,
+        bericht: prev.bericht || `Ik wil graag een offerte voor: ${product}\n\n`,
+      }));
+    }
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -32,7 +47,12 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          ...(productContext
+            ? { source: "webshop-offerte", product: productContext }
+            : {}),
+        }),
       });
 
       const data = await res.json();
@@ -102,7 +122,19 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2 bg-white p-8 md:p-12 rounded-xl shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-black text-secondary mb-8">Stuur ons een bericht</h2>
+              <h2 className="text-2xl font-black text-secondary mb-8">
+                {productContext ? "Vraag uw offerte aan" : "Stuur ons een bericht"}
+              </h2>
+
+              {productContext && (
+                <div className="mb-6 p-4 bg-primary/10 border border-primary/30 rounded-lg flex items-start gap-3">
+                  <span className="material-symbols-outlined text-primary">request_quote</span>
+                  <div>
+                    <p className="text-sm font-semibold text-secondary">Offerte-aanvraag voor:</p>
+                    <p className="text-secondary font-bold">{productContext}</p>
+                  </div>
+                </div>
+              )}
 
               {success && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
