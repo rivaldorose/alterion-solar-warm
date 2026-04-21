@@ -119,6 +119,7 @@ const LOCAL_PRODUCT_IMAGES: Record<string, string> = {
   "laadpalen": "/products/laadpalen.png",
   "hyxipower-1fase": "/products/hyxipower-1fase.png",
   "hyxipower-3fase": "/products/hyxipower-3fase.png",
+  "lanpwr-2500w-eu": "/products/lanpwr-2500w.png",
 };
 
 export function getProductImage(
