@@ -9,7 +9,10 @@ export default function VoorwaardenPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
       <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Juridisch</p>
-      <h1 className="text-4xl font-black text-secondary mb-12">Algemene Voorwaarden</h1>
+      <h1 className="text-4xl font-semibold text-secondary mb-4 tracking-tight">Algemene Voorwaarden</h1>
+      <p className="text-sm text-slate-400 mb-12">
+        Laatst bijgewerkt: april 2026. Alterion BV, Keurmeesterstraat 53, 1187ZX Amstelveen.
+      </p>
 
       <div className="prose prose-slate max-w-none space-y-10">
         <section>
@@ -39,7 +42,7 @@ export default function VoorwaardenPage() {
         <section>
           <h2 className="text-2xl font-bold text-secondary">4. Levering en installatie</h2>
           <p className="text-slate-600 leading-relaxed">
-            Leveringstermijnen zijn indicatief en geen fatale termijnen. Alterion streeft ernaar producten binnen 14 werkdagen te leveren. Installatie geschiedt door gecertificeerde installateurs van Alterion. De Klant dient te zorgen voor adequate toegang tot de installatielocatie en een geschikte elektrische aansluiting.
+            Leveringstermijnen zijn indicatief en geen fatale termijnen. Alterion streeft ernaar de installatie in te plannen binnen 40 werkdagen na goedkeuring van de offerte. Installatie geschiedt door gecertificeerde installateurs van Alterion. De Klant dient te zorgen voor adequate toegang tot de installatielocatie en een geschikte elektrische aansluiting.
           </p>
         </section>
 
