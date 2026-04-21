@@ -5,14 +5,14 @@ import BrandIcon from "@/components/BrandIcon";
 import BatteryInfoPopup from "@/components/BatteryInfoPopup";
 
 const partners = [
-  { name: "Alliander", src: "/partners/alliander.png" },
-  { name: "Enexis", src: "/partners/enexis.png" },
-  { name: "Liander", src: "/partners/liander.png" },
-  { name: "Netbeheer NL", src: "/partners/netbeheernl.png" },
-  { name: "Rijksoverheid", src: "/partners/rijksoverheid.png" },
-  { name: "RVO", src: "/partners/rvo.png" },
-  { name: "Stedin", src: "/partners/stedin.png" },
-  { name: "TenneT", src: "/partners/tennet.png" },
+  { name: "Alliander", src: "/partners/alliander.png", url: "https://www.alliander.com" },
+  { name: "Enexis", src: "/partners/enexis.png", url: "https://www.enexis.nl" },
+  { name: "Liander", src: "/partners/liander.png", url: "https://www.liander.nl" },
+  { name: "Netbeheer NL", src: "/partners/netbeheernl.png", url: "https://www.netbeheernederland.nl" },
+  { name: "Rijksoverheid", src: "/partners/rijksoverheid.png", url: "https://www.rijksoverheid.nl" },
+  { name: "RVO", src: "/partners/rvo.png", url: "https://www.rvo.nl" },
+  { name: "Stedin", src: "/partners/stedin.png", url: "https://www.stedin.net" },
+  { name: "TenneT", src: "/partners/tennet.png", url: "https://www.tennet.eu/nl" },
 ];
 
 export default function HomePage() {
@@ -60,9 +60,16 @@ export default function HomePage() {
           <p className="text-center text-sm font-bold text-slate-400 uppercase tracking-widest">Onze partners</p>
         </div>
         <div className="relative">
-          <div className="flex animate-scroll gap-16 w-max">
+          <div className="flex animate-scroll gap-16 w-max hover:[animation-play-state:paused]">
             {[...partners, ...partners].map((partner, i) => (
-              <div key={i} className="flex items-center justify-center h-12 min-w-[120px] opacity-90 hover:opacity-100 transition-all">
+              <a
+                key={i}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Bezoek ${partner.name}`}
+                className="flex items-center justify-center h-12 min-w-[120px] opacity-90 hover:opacity-100 hover:scale-105 transition-all"
+              >
                 <Image
                   src={partner.src}
                   alt={partner.name}
@@ -70,7 +77,7 @@ export default function HomePage() {
                   height={48}
                   className="h-8 w-auto object-contain"
                 />
-              </div>
+              </a>
             ))}
           </div>
         </div>
