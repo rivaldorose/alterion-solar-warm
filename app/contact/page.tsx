@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FAQSection from "@/components/FAQSection";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -226,42 +227,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-secondary mb-12 text-center">Veelgestelde vragen</h2>
-          <div className="space-y-6">
-            {[
-              {
-                q: "Hoe snel kan mijn thuisbatterij geinstalleerd worden?",
-                a: "Na goedkeuring van uw offerte plannen wij de installatie in binnen 40 werkdagen. De installatie zelf duurt doorgaans één werkdag."
-              },
-              {
-                q: "Is een offerte aanvragen gratis en vrijblijvend?",
-                a: "Ja, het aanvragen van een offerte is volledig gratis en vrijblijvend. Wij komen graag met u in gesprek over de mogelijkheden."
-              },
-              {
-                q: "Kan ik de thuisbatterij combineren met mijn bestaande zonnepanelen?",
-                a: "Ja, onze thuisbatterijen zijn compatibel met alle gangbare omvormers en zonnepaneel-systemen."
-              },
-              {
-                q: "Welke garantie bieden jullie?",
-                a: "Wij bieden standaard 10 jaar volledige garantie op al onze thuisbatterijen, inclusief onderdelen en arbeidsloon."
-              },
-            ].map((faq, i) => (
-              <details key={i} className="group bg-neutral-gray rounded-xl overflow-hidden">
-                <summary className="flex items-center justify-between p-6 cursor-pointer font-bold text-secondary hover:text-primary transition-colors">
-                  {faq.q}
-                  <span className="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div className="px-6 pb-6 text-slate-600 leading-relaxed">
-                  {faq.a}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FAQSection />
     </>
   );
 }
