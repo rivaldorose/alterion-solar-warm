@@ -32,6 +32,7 @@ const CATEGORY_BY_SLUG: Record<string, Exclude<Category, "all">> = {
   "laadpalen": "laadpalen",
   "hyxipower-1fase": "omvormers",
   "hyxipower-3fase": "omvormers",
+  "lanpwr-2500w-eu": "batterijen",
 };
 
 const SEGMENT_BY_SLUG: Record<string, Exclude<Segment, "all">> = {
@@ -46,6 +47,7 @@ const SEGMENT_BY_SLUG: Record<string, Exclude<Segment, "all">> = {
   "laadpalen": "particulier",
   "hyxipower-1fase": "particulier",
   "hyxipower-3fase": "zakelijk",
+  "lanpwr-2500w-eu": "particulier",
 };
 
 const CATEGORY_LABELS: Record<Exclude<Category, "all">, string> = {
@@ -68,6 +70,7 @@ const BRAND_BY_SLUG: Record<string, Exclude<Brand, "all">> = {
   "container-batterij-zakelijk": "alterion",
   "hyxipower-1fase": "hyxipower",
   "hyxipower-3fase": "hyxipower",
+  "lanpwr-2500w-eu": "alterion",
 };
 
 const BRAND_LABELS: Record<Exclude<Brand, "all">, string> = {

@@ -27,6 +27,12 @@ const fallbackData: Record<string, { title: string; description: string; price: 
     price: 0,
     image: "/products/hyxipower-3fase.png",
   },
+  "lanpwr-2500w-eu": {
+    title: "LANPWR-2500W EU",
+    description: "Draagbare power station met 2048Wh LiFePO4 batterijcel en 2500W continue output. Ideaal als back-up bij stroomuitval, mobiele werkplek of buiten gebruik. Meerdere AC, USB-C PD en 12V uitgangen.",
+    price: 0,
+    image: "/products/lanpwr-2500w.png",
+  },
   "marstek-venus-a": {
     title: "Marstek Venus A",
     description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer en 4 MPPT-trackers. LiFePO4 technologie, 6000+ cycli, 10 jaar garantie.",

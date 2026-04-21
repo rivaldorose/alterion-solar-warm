@@ -30,6 +30,16 @@ const fallbackProducts: WebshopProduct[] = [
     image: "/products/hyxipower-3fase.png",
   },
   {
+    slug: "lanpwr-2500w-eu",
+    name: "LANPWR-2500W EU",
+    description: "Draagbare power station, 2048Wh LiFePO4, 2500W output. Ideaal als back-up of mobiele energiebron.",
+    price: 0,
+    priceDisplay: "Op aanvraag",
+    badge: "Nieuw",
+    badgeStyle: "bg-primary text-secondary",
+    image: "/products/lanpwr-2500w.png",
+  },
+  {
     slug: "marstek-venus-a",
     name: "Marstek Venus A",
     description: "Hybride thuisbatterij met 2.12 kWh opslag, 1.5 kW omvormer. LiFePO4, 10 jaar garantie.",
@@ -89,8 +99,9 @@ export default async function WebshopPage() {
   // Hyxipower items staan (nog) niet in MedusaJS — voeg ze altijd toe zolang
   // ze niet als handle in de Medusa-response staan.
   const mappedSlugs = new Set(mapped.map((p) => p.slug));
+  const extraProductSlugs = ["hyxipower-1fase", "hyxipower-3fase", "lanpwr-2500w-eu"];
   const hyxiExtras = fallbackProducts.filter(
-    (p) => p.slug.startsWith("hyxipower-") && !mappedSlugs.has(p.slug)
+    (p) => extraProductSlugs.includes(p.slug) && !mappedSlugs.has(p.slug)
   );
 
   const products: WebshopProduct[] =
