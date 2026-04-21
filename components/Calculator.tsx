@@ -36,7 +36,7 @@ export default function Calculator() {
   ];
 
   return (
-    <section className="bg-neutral-gray border-t-4 border-primary py-24">
+    <section id="calculator" className="bg-neutral-gray border-t-4 border-primary py-24 scroll-mt-32">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold text-secondary tracking-tight">Bereken uw besparing in 1 minuut</h2>

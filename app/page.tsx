@@ -32,7 +32,7 @@ export default function HomePage() {
             <BatteryInfoPopup />
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/diensten"
+                href="#calculator"
                 className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all text-center inline-flex items-center justify-center gap-2"
               >
                 <BrandIcon size={20} />
