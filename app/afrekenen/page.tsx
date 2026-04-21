@@ -16,7 +16,7 @@ export default function AfrekenPage() {
     return (
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
         <span className="material-symbols-outlined text-slate-300 text-[80px] mb-6 block">shopping_cart</span>
-        <h1 className="text-3xl font-black text-secondary mb-4">Geen producten om af te rekenen</h1>
+        <h1 className="text-3xl font-semibold text-secondary mb-4">Geen producten om af te rekenen</h1>
         <Link
           href="/webshop"
           className="bg-primary text-secondary font-bold px-8 py-4 rounded-lg text-lg hover:brightness-105 transition-all inline-block"
@@ -74,7 +74,7 @@ export default function AfrekenPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-3xl md:text-4xl font-black text-secondary mb-10">Afrekenen</h1>
+      <h1 className="text-3xl md:text-4xl font-semibold text-secondary mb-10">Afrekenen</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -198,7 +198,7 @@ export default function AfrekenPage() {
 
           {/* Order Summary Sidebar */}
           <div className="bg-white rounded-xl border border-slate-100 p-8 h-fit sticky top-32">
-            <h2 className="text-xl font-black text-secondary mb-6">Uw bestelling</h2>
+            <h2 className="text-xl font-semibold text-secondary mb-6">Uw bestelling</h2>
             <div className="space-y-4 mb-6">
               {items.map((item) => (
                 <div key={item.slug} className="flex justify-between items-center gap-2">
@@ -227,7 +227,7 @@ export default function AfrekenPage() {
               </div>
               <div className="border-t border-slate-100 pt-3 flex justify-between">
                 <span className="font-bold text-secondary text-lg">Totaal</span>
-                <span className="font-black text-secondary text-2xl">{formatPrice(totalPrice * 1.21)}</span>
+                <span className="font-semibold text-secondary text-2xl">{formatPrice(totalPrice * 1.21)}</span>
               </div>
             </div>
             {error && (
