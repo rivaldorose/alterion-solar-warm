@@ -87,6 +87,38 @@ export async function createZohoLead(lead: {
   return data;
 }
 
+export async function createZohoQuoteRequest(quote: {
+  naam: string;
+  email: string;
+  telefoon?: string;
+  product: string;
+  bericht: string;
+}) {
+  const accessToken = await getAccessToken();
+
+  const response = await fetch(`${ZOHO_API_URL}/Deals`, {
+    method: "POST",
+    headers: {
+      Authorization: `Zoho-oauthtoken ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      data: [
+        {
+          Deal_Name: `Offerte-aanvraag: ${quote.product} — ${quote.naam}`,
+          Stage: "Qualification",
+          Contact_Name: quote.naam,
+          Description: `Klant: ${quote.naam}\nEmail: ${quote.email}\nTelefoon: ${quote.telefoon || "—"}\n\nProduct: ${quote.product}\n\nBericht klant:\n${quote.bericht}`,
+          Lead_Source: "Webshop offerte",
+        },
+      ],
+    }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
 export async function createZohoOrder(order: {
   naam: string;
   email: string;

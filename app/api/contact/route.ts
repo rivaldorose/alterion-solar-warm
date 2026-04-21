@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createZohoLead } from "@/lib/zoho";
+import { createZohoLead, createZohoQuoteRequest } from "@/lib/zoho";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 
 const RATE_LIMIT = 10;
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { naam, email, telefoon, onderwerp, bericht, website } = body;
+    const { naam, email, telefoon, onderwerp, bericht, website, source, product } = body;
 
     // Honeypot — silently accept but drop bot submissions
     if (typeof website === "string" && website.length > 0) {
@@ -63,14 +63,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Webshop offerte-aanvragen → Zoho Deal i.p.v. Lead
+    const isQuoteRequest =
+      source === "webshop-offerte" && typeof product === "string" && product.length > 0;
+
     try {
-      await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
+      if (isQuoteRequest) {
+        await createZohoQuoteRequest({
+          naam,
+          email,
+          telefoon,
+          product: product.slice(0, 200),
+          bericht,
+        });
+      } else {
+        await createZohoLead({ naam, email, telefoon, onderwerp, bericht });
+      }
     } catch (err) {
-      console.error("Zoho lead error:", err);
+      console.error("Zoho error:", err);
     }
 
     return NextResponse.json(
-      { message: "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op." },
+      {
+        message: isQuoteRequest
+          ? "Bedankt voor uw offerte-aanvraag! Wij nemen binnen 1 werkdag contact met u op."
+          : "Bedankt voor uw bericht! Wij nemen zo snel mogelijk contact met u op.",
+      },
       { status: 200 }
     );
   } catch {
